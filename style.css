@@ -456,6 +456,34 @@ select:focus, input:focus, textarea:focus {
     transition: all 0.3s ease;
 }
 
+.team-member a {
+    display: block;
+    position: relative;
+    cursor: pointer;
+}
+
+.team-member a::after {
+    content: '🔍 Click to view full size';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.8);
+    color: var(--primary);
+    padding: 15px 25px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.9em;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+    white-space: nowrap;
+}
+
+.team-member a:hover::after {
+    opacity: 1;
+}
+
 .team-member:hover {
     transform: translateY(-8px);
     box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
@@ -511,14 +539,53 @@ select:focus, input:focus, textarea:focus {
     color: var(--black);
 }
 
-#contact p {
-    font-size: 1.1em;
-    margin-bottom: 20px;
-    color: var(--gray);
+.contact-info {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto 40px;
+    text-align: left;
 }
 
-#contact strong {
+.contact-item {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    padding: 30px;
+    background: var(--gray-light);
+    border-radius: 12px;
+    transition: all 0.3s ease;
+}
+
+.contact-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.contact-item i {
+    font-size: 2em;
+    color: var(--primary);
+    min-width: 40px;
+    margin-top: 5px;
+}
+
+.contact-item strong {
     color: var(--black);
+    font-size: 1.1em;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.contact-item div {
+    flex: 1;
+}
+
+.contact-tagline {
+    font-size: 1.1em;
+    color: var(--gray);
+    margin-top: 40px;
+    font-style: italic;
 }
 
 #contact a {
