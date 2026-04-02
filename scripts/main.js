@@ -342,6 +342,431 @@ document.addEventListener('DOMContentLoaded', function() {
     // Hide team section by default on page load
     teamSection.classList.remove('active');
     
+    // Make gallery images clickable to open in new tab
+    document.querySelectorAll('#previous-work .slide img').forEach(img => {
+        img.style.cursor = 'pointer';
+        img.addEventListener('click', function() {
+            window.open(this.src, '_blank', 'noopener,noreferrer');
+        });
+        // Add hover title
+        img.title = 'Click to view full size';
+    });
+    
+    // FAQ Accordion functionality
+    document.querySelectorAll('.faq-question').forEach(button => {
+        button.addEventListener('click', function() {
+            const faqItem = this.parentElement;
+            const isActive = faqItem.classList.contains('active');
+            
+            // Close all FAQ items
+            document.querySelectorAll('.faq-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            
+            // Open clicked item if it wasn't active
+            if (!isActive) {
+                faqItem.classList.add('active');
+            }
+        });
+    });
+    
+    // Testimonials Carousel functionality
+    let testimonialIndex = 0;
+    const testimonialTrack = document.querySelector('.testimonials-track');
+    const testimonialCards = document.querySelectorAll('.testimonial-card');
+    const testimonialDotsContainer = document.querySelector('.testimonial-dots');
+    let testimonialTimer;
+    
+    if (testimonialCards.length > 0) {
+        // Create dots
+        testimonialCards.forEach((_, index) => {
+            const dot = document.createElement('span');
+            dot.className = 'testimonial-dot';
+            if (index === 0) dot.classList.add('active');
+            dot.addEventListener('click', () => goToTestimonial(index));
+            testimonialDotsContainer.appendChild(dot);
+        });
+        
+        function goToTestimonial(index) {
+            testimonialIndex = index;
+            const offset = -100 * index;
+            testimonialTrack.style.transform = `translateX(${offset}%)`;
+            
+            // Update dots
+            document.querySelectorAll('.testimonial-dot').forEach((dot, i) => {
+                dot.classList.toggle('active', i === index);
+            });
+        }
+        
+        function nextTestimonial() {
+            testimonialIndex = (testimonialIndex + 1) % testimonialCards.length;
+            goToTestimonial(testimonialIndex);
+        }
+        
+        // Auto-scroll every 15 seconds
+        function startTestimonialCarousel() {
+            testimonialTimer = setInterval(nextTestimonial, 15000);
+        }
+        
+        // Pause on hover, resume on mouse leave
+        testimonialTrack.addEventListener('mouseenter', () => {
+            clearInterval(testimonialTimer);
+        });
+        
+        testimonialTrack.addEventListener('mouseleave', () => {
+            startTestimonialCarousel();
+        });
+        
+        startTestimonialCarousel();
+    }
+    
     // Start slideshow
     showSlides();
 });
+// FAQ Modal System
+const faqContent = {
+    areas: {
+        title: "What areas do you serve?",
+        content: <p>BuildRight Solutions proudly serves the entire Gauteng province and surrounding areas. Our primary service areas include:</p>
+        <ul style="color: #666; line-height: 2;">
+            <li><strong>Johannesburg:</strong> CBD, Sandton, Rosebank, Randburg, Bryanston, Rivonia, Morningside</li>
+            <li><strong>West Rand:</strong> Roodepoort, Honeydew, Zandspruit, Florida</li>
+            <li><strong>East Rand:</strong> Bedfordview, Edenvale, Alberton, Germiston, Boksburg, Benoni</li>
+            <li><strong>North:</strong> Midrand, Fourways, Centurion, Pretoria</li>
+            <li><strong>South:</strong> Soweto and surrounding townships</li>
+        </ul>
+        <p>We also service surrounding areas beyond Gauteng for larger projects. Contact us to confirm service availability in your area!</p>
+    },
+    quotes: {
+        title: "Do you offer free quotes?",
+        content: <p><strong>Yes, absolutely!</strong> We provide free, no-obligation quotes for all our services.</p>
+        <p><strong>Our Quotation Process:</strong></p>
+        <ol style="color: #666; line-height: 2;">
+            <li><strong>Request:</strong> Submit your quote request through our website, WhatsApp, or phone</li>
+            <li><strong>Assessment:</strong> We review your requirements and may schedule a site visit if needed</li>
+            <li><strong>Quote Delivery:</strong> You receive a detailed, transparent quote within 24-48 hours</li>
+            <li><strong>No Pressure:</strong> Take your time to review - no obligation to proceed</li>
+        </ol>
+        <p>All quotes include itemized costs, project timeline, and clear terms. We never charge for quotes!</p>
+    },
+    timeline: {
+        title: "How long does a typical project take?",
+        content: <p>Project timelines vary based on scope and complexity:</p>
+        <h3 style="color: #000; margin-top: 20px;">Typical Timeframes:</h3>
+        <ul style="color: #666; line-height: 2;">
+            <li><strong>Small Repairs:</strong> Same day to 2 days (plumbing fixes, small painting jobs)</li>
+            <li><strong>Medium Projects:</strong> 3-7 days (room painting, tiling, minor renovations)</li>
+            <li><strong>Large Projects:</strong> 2-8 weeks (full renovations, building extensions, major roofing)</li>
+        </ul>
+        <p><strong>Factors affecting timeline:</strong></p>
+        <ul style="color: #666; line-height: 1.8;">
+            <li>Project complexity and size</li>
+            <li>Weather conditions (for outdoor work)</li>
+            <li>Material availability</li>
+            <li>Client-requested changes</li>
+        </ul>
+        <p>We provide accurate timelines in every quote and keep you updated throughout the project.</p>
+    },
+    licensed: {
+        title: "Are you licensed and insured?",
+        content: <p><strong>Yes!</strong> BuildRight Solutions is fully registered, licensed, and insured.</p>
+        <div style="background: #f5f5f5; padding: 20px; border-radius: 10px; margin: 20px 0;">
+            <p style="margin: 0;"><strong>Company Registration Number:</strong> 2026/110944/07</p>
+        </div>
+        <p><strong>Our Credentials:</strong></p>
+        <ul style="color: #666; line-height: 2;">
+            <li>Registered with CIPC (Companies and Intellectual Property Commission)</li>
+            <li>Comprehensive liability insurance coverage</li>
+            <li>Compliance with all South African building regulations</li>
+            <li>Adherence to Occupational Health and Safety Act requirements</li>
+            <li>Proper permits and documentation for all projects</li>
+        </ul>
+        <p>We operate with complete transparency and professionalism. All documentation is available upon request.</p>
+    },
+    emergency: {
+        title: "Do you handle emergency repairs?",
+        content: <p><strong>Yes!</strong> We offer emergency repair services for urgent situations.</p>
+        <h3 style="color: #000; margin-top: 20px;">Emergency Services Include:</h3>
+        <ul style="color: #666; line-height: 2;">
+            <li><strong>Plumbing Emergencies:</strong> Burst pipes, major leaks, geyser failures</li>
+            <li><strong>Roof Emergencies:</strong> Storm damage, major leaks, structural issues</li>
+            <li><strong>Electrical Issues:</strong> Safety hazards, power failures</li>
+            <li><strong>Structural Damage:</strong> Immediate safety concerns</li>
+        </ul>
+        <p><strong>How to request emergency service:</strong></p>
+        <ol style="color: #666; line-height: 2;">
+            <li>Call us immediately: <strong>066 402 8544</strong></li>
+            <li>WhatsApp for fastest response: <strong>062 055 2382</strong></li>
+            <li>Describe the emergency clearly</li>
+            <li>Our team will respond ASAP</li>
+        </ol>
+        <p style="background: #fff3cd; padding: 15px; border-radius: 8px; border-left: 4px solid #ffd700;">
+            <strong>Note:</strong> Emergency services may incur additional call-out fees due to urgency and after-hours availability.
+        </p>
+    },
+    payment: {
+        title: "What payment methods do you accept?",
+        content: <p>We offer flexible payment options for your convenience:</p>
+        <h3 style="color: #000; margin-top: 20px;">Accepted Payment Methods:</h3>
+        <ul style="color: #666; line-height: 2;">
+            <li><strong>Bank Transfer (EFT):</strong> Direct deposit to our business account</li>
+            <li><strong>Cash:</strong> Cash payments accepted on-site</li>
+            <li><strong>Mobile Payments:</strong> SnapScan, Zapper, and other mobile payment platforms</li>
+            <li><strong>Cheque:</strong> For larger commercial projects</li>
+        </ul>
+        <h3 style="color: #000; margin-top: 20px;">Payment Terms:</h3>
+        <ul style="color: #666; line-height: 2;">
+            <li><strong>Deposit:</strong> 30-50% upfront for materials and scheduling</li>
+            <li><strong>Progress Payments:</strong> For larger projects, staged payments as work progresses</li>
+            <li><strong>Final Payment:</strong> Upon project completion and your satisfaction</li>
+        </ul>
+        <p>All payment terms are clearly outlined in your quote. We believe in transparent pricing with no hidden fees.</p>
+    },
+    warranty: {
+        title: "Do you provide warranties on your work?",
+        content: <p><strong>Yes!</strong> We stand behind the quality of our work with comprehensive warranties.</p>
+        <h3 style="color: #000; margin-top: 20px;">Warranty Coverage:</h3>
+        <ul style="color: #666; line-height: 2;">
+            <li><strong>Workmanship Warranty:</strong> 6 months to 2 years depending on service type</li>
+            <li><strong>Material Warranty:</strong> As per manufacturer specifications (often 1-10 years)</li>
+            <li><strong>Structural Work:</strong> Extended warranties available for major projects</li>
+        </ul>
+        <h3 style="color: #000; margin-top: 20px;">What's Covered:</h3>
+        <ul style="color: #666; line-height: 2;">
+            <li>Defects in workmanship</li>
+            <li>Material failures (manufacturer warranty)</li>
+            <li>Installation issues</li>
+            <li>Premature wear under normal use</li>
+        </ul>
+        <h3 style="color: #000; margin-top: 20px;">What's Not Covered:</h3>
+        <ul style="color: #666; line-height: 2;">
+            <li>Damage from misuse or neglect</li>
+            <li>Normal wear and tear</li>
+            <li>Accidental damage</li>
+            <li>Modifications by third parties</li>
+        </ul>
+        <p>Specific warranty terms are provided in writing with every project quote.</p>
+    },
+    planning: {
+        title: "Can you help with project planning and design?",
+        content: <p><strong>Absolutely!</strong> We offer comprehensive consultation and planning services.</p>
+        <h3 style="color: #000; margin-top: 20px;">Our Planning Services Include:</h3>
+        <ul style="color: #666; line-height: 2;">
+            <li><strong>Initial Consultation:</strong> Discuss your vision, needs, and budget</li>
+            <li><strong>Site Assessment:</strong> Evaluate existing conditions and constraints</li>
+            <li><strong>Design Recommendations:</strong> Suggest optimal solutions and materials</li>
+            <li><strong>Budget Planning:</strong> Help maximize value within your budget</li>
+            <li><strong>Timeline Development:</strong> Create realistic project schedules</li>
+            <li><strong>Material Selection:</strong> Guide you through choosing the best materials</li>
+        </ul>
+        <h3 style="color: #000; margin-top: 20px;">Design Assistance:</h3>
+        <ul style="color: #666; line-height: 2;">
+            <li>Color scheme recommendations</li>
+            <li>Layout optimization</li>
+            <li>Modern design trends</li>
+            <li>Energy-efficient solutions</li>
+            <li>Space-saving ideas</li>
+        </ul>
+        <p>Our experienced team brings 10+ years of combined expertise to help you achieve the best results for your project.</p>
+    }
+};
+
+function openFAQModal(faqId) {
+    const modal = document.getElementById('faqModal');
+    const title = document.getElementById('faqModalTitle');
+    const content = document.getElementById('faqModalContent');
+    
+    if (faqContent[faqId]) {
+        title.textContent = faqContent[faqId].title;
+        content.innerHTML = faqContent[faqId].content;
+        modal.style.display = 'block';
+    }
+}
+
+function closeFAQModal() {
+    const modal = document.getElementById('faqModal');
+    modal.style.display = 'none';
+}
+
+// Close FAQ modal when clicking outside
+window.addEventListener('click', function(event) {
+    const faqModal = document.getElementById('faqModal');
+    if (event.target === faqModal) {
+        closeFAQModal();
+    }
+});
+
+// Enhanced Quote System with Image Upload
+let currentStep = 1;
+let uploadedImages = [];
+
+function goToStep(stepNumber) {
+    // Validate current step before proceeding
+    if (stepNumber > currentStep) {
+        if (currentStep === 1 && !validateStep1()) {
+            return;
+        }
+    }
+    
+    // Hide all steps
+    document.querySelectorAll('.quote-step-content').forEach(step => {
+        step.style.display = 'none';
+    });
+    
+    // Show target step
+    document.getElementById('step' + stepNumber).style.display = 'block';
+    
+    // Update step indicators
+    document.querySelectorAll('.step').forEach((step, index) => {
+        step.classList.remove('active', 'completed');
+        if (index + 1 < stepNumber) {
+            step.classList.add('completed');
+        } else if (index + 1 === stepNumber) {
+            step.classList.add('active');
+        }
+    });
+    
+    currentStep = stepNumber;
+    
+    // If going to step 3, generate review
+    if (stepNumber === 3) {
+        generateQuoteReview();
+    }
+}
+
+function validateStep1() {
+    const service = document.getElementById('service').value;
+    const location = document.getElementById('location').value;
+    
+    if (!service) {
+        alert('Please select a service');
+        return false;
+    }
+    if (!location) {
+        alert('Please enter a location');
+        return false;
+    }
+    return true;
+}
+
+function handleImageUpload(event) {
+    const files = event.target.files;
+    const maxFiles = 5;
+    const maxSize = 5 * 1024 * 1024; // 5MB
+    
+    if (uploadedImages.length + files.length > maxFiles) {
+        alert('Maximum ' + maxFiles + ' images allowed');
+        return;
+    }
+    
+    Array.from(files).forEach(file => {
+        if (file.size > maxSize) {
+            alert(file.name + ' is too large. Maximum size is 5MB');
+            return;
+        }
+        
+        if (!file.type.startsWith('image/')) {
+            alert(file.name + ' is not an image file');
+            return;
+        }
+        
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            uploadedImages.push({
+                name: file.name,
+                data: e.target.result,
+                size: file.size
+            });
+            displayImagePreview();
+        };
+        reader.readAsDataURL(file);
+    });
+}
+
+function displayImagePreview() {
+    const container = document.getElementById('imagePreviewContainer');
+    container.innerHTML = '';
+    
+    uploadedImages.forEach((image, index) => {
+        const div = document.createElement('div');
+        div.className = 'image-preview-item';
+        div.innerHTML = 
+            <img src=" + image.data + " alt=" + image.name + ">
+            <button class="image-remove-btn" onclick="removeImage( + index + )">×</button>
+        ;
+        container.appendChild(div);
+    });
+}
+
+function removeImage(index) {
+    uploadedImages.splice(index, 1);
+    displayImagePreview();
+}
+
+function generateQuoteReview() {
+    const service = document.getElementById('service').value;
+    const location = document.getElementById('location').value;
+    const details = document.getElementById('details').value;
+    const reviewBox = document.getElementById('quoteReview');
+    
+    let reviewHTML = 
+        <div class="review-item">
+            <div class="review-label">Service Requested:</div>
+            <div class="review-value"> + service + </div>
+        </div>
+        <div class="review-item">
+            <div class="review-label">Location:</div>
+            <div class="review-value"> + location + </div>
+        </div>
+    ;
+    
+    // Add service-specific questions
+    if (serviceQuestions[service]) {
+        let questionsHTML = '';
+        serviceQuestions[service].forEach((q, index) => {
+            const answerElem = document.getElementById('q' + index);
+            if (answerElem) {
+                questionsHTML += 
+                    <div style="margin-bottom: 8px;">
+                        <strong style="color: #000;"> + q.question + </strong><br>
+                        <span style="color: #666;"> + answerElem.value + </span>
+                    </div>
+                ;
+            }
+        });
+        if (questionsHTML) {
+            reviewHTML += 
+                <div class="review-item">
+                    <div class="review-label">Service Details:</div>
+                    <div class="review-value"> + questionsHTML + </div>
+                </div>
+            ;
+        }
+    }
+    
+    if (details) {
+        reviewHTML += 
+            <div class="review-item">
+                <div class="review-label">Additional Details:</div>
+                <div class="review-value"> + details + </div>
+            </div>
+        ;
+    }
+    
+    if (uploadedImages.length > 0) {
+        let imagesHTML = '<div class="review-images">';
+        uploadedImages.forEach(image => {
+            imagesHTML += '<img src="' + image.data + '" alt="Project photo">';
+        });
+        imagesHTML += '</div>';
+        
+        reviewHTML += 
+            <div class="review-item">
+                <div class="review-label">Uploaded Photos ( + uploadedImages.length + ):</div>
+                <div class="review-value"> + imagesHTML + </div>
+            </div>
+        ;
+    }
+    
+    reviewBox.innerHTML = reviewHTML;
+}
