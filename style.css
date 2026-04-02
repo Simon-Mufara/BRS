@@ -594,6 +594,13 @@ footer {
     margin-bottom: 15px;
 }
 
+.footer-reg {
+    font-size: 0.9em;
+    color: var(--gray);
+    margin-bottom: 10px;
+    font-style: italic;
+}
+
 footer p {
     color: var(--white);
     margin-bottom: 10px;
