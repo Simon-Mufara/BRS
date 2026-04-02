@@ -354,6 +354,38 @@ select:focus, input:focus, textarea:focus {
     color: var(--black);
 }
 
+.service-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+}
+
+.tab-btn {
+    background: var(--white);
+    color: var(--black);
+    border: 2px solid var(--primary);
+    padding: 12px 28px;
+    border-radius: 25px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 1em;
+}
+
+.tab-btn:hover {
+    background: var(--primary);
+    color: var(--black);
+    transform: translateY(-2px);
+}
+
+.tab-btn.active {
+    background: var(--black);
+    color: var(--primary);
+    border-color: var(--black);
+}
+
 .slideshow-container {
     position: relative;
     max-width: 800px;
@@ -386,6 +418,11 @@ select:focus, input:focus, textarea:focus {
 #team {
     padding: 100px 0;
     background: var(--white);
+    display: none;
+}
+
+#team.active {
+    display: block;
 }
 
 #team h2 {
@@ -768,3 +805,13 @@ footer p {
         max-width: 100%;
     }
 }
+
+@media (max-width: 600px) {
+    .service-tabs {
+        gap: 10px;
+    }
+
+    .tab-btn {
+        padding: 10px 20px;
+        font-size: 0.9em;
+    }

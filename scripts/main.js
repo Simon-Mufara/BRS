@@ -1,14 +1,3 @@
-// Smooth scrolling for navigation links
-document.querySelectorAll('nav a').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const targetId = this.getAttribute('href').substring(1);
-        const targetElement = document.getElementById(targetId);
-        if (targetElement) {
-            targetElement.scrollIntoView({ behavior: 'smooth' });
-        }
-    });
-});
 
 // Close modal when clicking outside
 window.onclick = function(event) {
@@ -253,16 +242,106 @@ Contact: 066 402 8544 | buildright.solutions.agency@gmail.com
 
 // Slideshow functionality
 let slideIndex = 0;
-showSlides();
+let currentFilter = 'all';
+let slideshowTimer;
+
+function getVisibleSlides() {
+    let slides = Array.from(document.querySelectorAll('#previous-work .slide'));
+    if (currentFilter === 'all') {
+        return slides;
+    }
+    return slides.filter(slide => slide.getAttribute('data-service') === currentFilter);
+}
 
 function showSlides() {
-  let i;
-  let slides = document.getElementsByClassName("slide");
-  for (i = 0; i < slides.length; i++) {
-    slides[i].style.display = "none";  
-  }
-  slideIndex++;
-  if (slideIndex > slides.length) {slideIndex = 1}    
-  slides[slideIndex-1].style.display = "block";  
-  setTimeout(showSlides, 3000); // Change image every 3 seconds
+    let visibleSlides = getVisibleSlides();
+    if (visibleSlides.length === 0) return;
+
+    // Hide all slides first
+    let allSlides = document.querySelectorAll('#previous-work .slide');
+    allSlides.forEach(slide => slide.style.display = "none");
+
+    // Ensure slideIndex is within bounds
+    if (slideIndex <= 0) {
+        slideIndex = 1;
+    }
+    if (slideIndex > visibleSlides.length) {
+        slideIndex = 1;
+    }
+
+    // Show the current slide
+    visibleSlides[slideIndex - 1].style.display = "block";
+
+    // Auto-advance to next slide
+    slideIndex++;
+    
+    if (slideshowTimer) clearTimeout(slideshowTimer);
+    slideshowTimer = setTimeout(showSlides, 3000);
 }
+
+function filterSlideshow(service, button) {
+    // Stop current slideshow
+    if (slideshowTimer) {
+        clearTimeout(slideshowTimer);
+    }
+    
+    // Update filter
+    currentFilter = service;
+    slideIndex = 0; // Reset to 0 so showSlides() will start at 1
+    
+    // Update active tab
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.classList.remove('active');
+    });
+    button.classList.add('active');
+    
+    // Restart slideshow with new filter
+    showSlides();
+}
+
+// Initialize everything when DOM is ready
+document.addEventListener('DOMContentLoaded', function() {
+    // Smooth scrolling for navigation links
+    document.querySelectorAll('nav a').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href').substring(1);
+            const targetElement = document.getElementById(targetId);
+            if (targetElement) {
+                targetElement.scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+    });
+    
+    // Filter button event listeners
+    document.querySelectorAll('.tab-btn').forEach(button => {
+        button.addEventListener('click', function() {
+            const service = this.getAttribute('data-filter');
+            filterSlideshow(service, this);
+        });
+    });
+    
+    // Team section visibility handler
+    const teamSection = document.getElementById('team');
+    const navLinks = document.querySelectorAll('nav a');
+    
+    navLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            const href = this.getAttribute('href');
+            
+            if (href === '#team') {
+                // Show team section
+                teamSection.classList.add('active');
+            } else if (href === '#home' || href === '#services' || href === '#previous-work') {
+                // Hide team section when navigating away
+                teamSection.classList.remove('active');
+            }
+        });
+    });
+    
+    // Hide team section by default on page load
+    teamSection.classList.remove('active');
+    
+    // Start slideshow
+    showSlides();
+});
