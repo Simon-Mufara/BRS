@@ -427,7 +427,7 @@ document.addEventListener('DOMContentLoaded', function() {
 const faqContent = {
     areas: {
         title: "What areas do you serve?",
-        content: <p>BuildRight Solutions proudly serves the entire Gauteng province and surrounding areas. Our primary service areas include:</p>
+        content: `<p>BuildRight Solutions proudly serves the entire Gauteng province and surrounding areas. Our primary service areas include:</p>
         <ul style="color: #666; line-height: 2;">
             <li><strong>Johannesburg:</strong> CBD, Sandton, Rosebank, Randburg, Bryanston, Rivonia, Morningside</li>
             <li><strong>West Rand:</strong> Roodepoort, Honeydew, Zandspruit, Florida</li>
@@ -435,11 +435,11 @@ const faqContent = {
             <li><strong>North:</strong> Midrand, Fourways, Centurion, Pretoria</li>
             <li><strong>South:</strong> Soweto and surrounding townships</li>
         </ul>
-        <p>We also service surrounding areas beyond Gauteng for larger projects. Contact us to confirm service availability in your area!</p>
+        <p>We also service surrounding areas beyond Gauteng for larger projects. Contact us to confirm service availability in your area!</p>`
     },
     quotes: {
         title: "Do you offer free quotes?",
-        content: <p><strong>Yes, absolutely!</strong> We provide free, no-obligation quotes for all our services.</p>
+        content: `<p><strong>Yes, absolutely!</strong> We provide free, no-obligation quotes for all our services.</p>
         <p><strong>Our Quotation Process:</strong></p>
         <ol style="color: #666; line-height: 2;">
             <li><strong>Request:</strong> Submit your quote request through our website, WhatsApp, or phone</li>
@@ -447,11 +447,11 @@ const faqContent = {
             <li><strong>Quote Delivery:</strong> You receive a detailed, transparent quote within 24-48 hours</li>
             <li><strong>No Pressure:</strong> Take your time to review - no obligation to proceed</li>
         </ol>
-        <p>All quotes include itemized costs, project timeline, and clear terms. We never charge for quotes!</p>
+        <p>All quotes include itemized costs, project timeline, and clear terms. We never charge for quotes!</p>`
     },
     timeline: {
         title: "How long does a typical project take?",
-        content: <p>Project timelines vary based on scope and complexity:</p>
+        content: `<p>Project timelines vary based on scope and complexity:</p>
         <h3 style="color: #000; margin-top: 20px;">Typical Timeframes:</h3>
         <ul style="color: #666; line-height: 2;">
             <li><strong>Small Repairs:</strong> Same day to 2 days (plumbing fixes, small painting jobs)</li>
@@ -465,11 +465,11 @@ const faqContent = {
             <li>Material availability</li>
             <li>Client-requested changes</li>
         </ul>
-        <p>We provide accurate timelines in every quote and keep you updated throughout the project.</p>
+        <p>We provide accurate timelines in every quote and keep you updated throughout the project.</p>`
     },
     licensed: {
         title: "Are you licensed and insured?",
-        content: <p><strong>Yes!</strong> BuildRight Solutions is fully registered, licensed, and insured.</p>
+        content: `<p><strong>Yes!</strong> BuildRight Solutions is fully registered, licensed, and insured.</p>
         <div style="background: #f5f5f5; padding: 20px; border-radius: 10px; margin: 20px 0;">
             <p style="margin: 0;"><strong>Company Registration Number:</strong> 2026/110944/07</p>
         </div>
@@ -481,11 +481,11 @@ const faqContent = {
             <li>Adherence to Occupational Health and Safety Act requirements</li>
             <li>Proper permits and documentation for all projects</li>
         </ul>
-        <p>We operate with complete transparency and professionalism. All documentation is available upon request.</p>
+        <p>We operate with complete transparency and professionalism. All documentation is available upon request.</p>`
     },
     emergency: {
         title: "Do you handle emergency repairs?",
-        content: <p><strong>Yes!</strong> We offer emergency repair services for urgent situations.</p>
+        content: `<p><strong>Yes!</strong> We offer emergency repair services for urgent situations.</p>
         <h3 style="color: #000; margin-top: 20px;">Emergency Services Include:</h3>
         <ul style="color: #666; line-height: 2;">
             <li><strong>Plumbing Emergencies:</strong> Burst pipes, major leaks, geyser failures</li>
@@ -502,11 +502,11 @@ const faqContent = {
         </ol>
         <p style="background: #fff3cd; padding: 15px; border-radius: 8px; border-left: 4px solid #ffd700;">
             <strong>Note:</strong> Emergency services may incur additional call-out fees due to urgency and after-hours availability.
-        </p>
+        </p>`
     },
     payment: {
         title: "What payment methods do you accept?",
-        content: <p>We offer flexible payment options for your convenience:</p>
+        content: `<p>We offer flexible payment options for your convenience:</p>
         <h3 style="color: #000; margin-top: 20px;">Accepted Payment Methods:</h3>
         <ul style="color: #666; line-height: 2;">
             <li><strong>Bank Transfer (EFT):</strong> Direct deposit to our business account</li>
@@ -520,11 +520,11 @@ const faqContent = {
             <li><strong>Progress Payments:</strong> For larger projects, staged payments as work progresses</li>
             <li><strong>Final Payment:</strong> Upon project completion and your satisfaction</li>
         </ul>
-        <p>All payment terms are clearly outlined in your quote. We believe in transparent pricing with no hidden fees.</p>
+        <p>All payment terms are clearly outlined in your quote. We believe in transparent pricing with no hidden fees.</p>`
     },
     warranty: {
         title: "Do you provide warranties on your work?",
-        content: <p><strong>Yes!</strong> We stand behind the quality of our work with comprehensive warranties.</p>
+        content: `<p><strong>Yes!</strong> We stand behind the quality of our work with comprehensive warranties.</p>
         <h3 style="color: #000; margin-top: 20px;">Warranty Coverage:</h3>
         <ul style="color: #666; line-height: 2;">
             <li><strong>Workmanship Warranty:</strong> 6 months to 2 years depending on service type</li>
@@ -545,11 +545,11 @@ const faqContent = {
             <li>Accidental damage</li>
             <li>Modifications by third parties</li>
         </ul>
-        <p>Specific warranty terms are provided in writing with every project quote.</p>
+        <p>Specific warranty terms are provided in writing with every project quote.</p>`
     },
     planning: {
         title: "Can you help with project planning and design?",
-        content: <p><strong>Absolutely!</strong> We offer comprehensive consultation and planning services.</p>
+        content: `<p><strong>Absolutely!</strong> We offer comprehensive consultation and planning services.</p>
         <h3 style="color: #000; margin-top: 20px;">Our Planning Services Include:</h3>
         <ul style="color: #666; line-height: 2;">
             <li><strong>Initial Consultation:</strong> Discuss your vision, needs, and budget</li>
@@ -567,7 +567,7 @@ const faqContent = {
             <li>Energy-efficient solutions</li>
             <li>Space-saving ideas</li>
         </ul>
-        <p>Our experienced team brings 10+ years of combined expertise to help you achieve the best results for your project.</p>
+        <p>Our experienced team brings 10+ years of combined expertise to help you achieve the best results for your project.</p>`
     }
 };
 

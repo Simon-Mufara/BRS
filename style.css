@@ -399,9 +399,17 @@ select:focus, input:focus, textarea:focus {
 
 .slide img {
     width: 100%;
-    height: auto;
+    height: 500px;
+    object-fit: cover;
+    object-position: center;
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.slide img:hover {
+    transform: scale(1.02);
 }
 
 .fade {
