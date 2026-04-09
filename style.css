@@ -1194,6 +1194,36 @@ footer p {
         padding: 24px;
     }
 
+    .testimonials-carousel {
+        padding: 8px 0;
+    }
+
+    .testimonial-card {
+        border-radius: 12px;
+        gap: 10px;
+    }
+
+    .testimonial-text {
+        font-size: 1rem;
+        line-height: 1.6;
+        margin-bottom: 14px;
+    }
+
+    .stars {
+        font-size: 1.15em;
+        margin-bottom: 8px;
+    }
+
+    .testimonial-dots {
+        margin-top: 20px;
+        gap: 10px;
+    }
+
+    .testimonial-dot {
+        width: 11px;
+        height: 11px;
+    }
+
     .service-tabs {
         gap: 10px;
     }
@@ -1305,6 +1335,48 @@ footer p {
     .faq-card i,
     .benefit-card i {
         font-size: 2.4em;
+    }
+
+    #testimonials {
+        padding: 56px 0;
+    }
+
+    #testimonials h2 {
+        font-size: 1.8rem;
+        margin-bottom: 18px;
+    }
+
+    .testimonials-carousel {
+        padding: 4px 0;
+    }
+
+    .testimonial-card {
+        padding: 18px;
+        border-left-width: 3px;
+        border-radius: 10px;
+    }
+
+    .testimonial-text {
+        font-size: 0.95rem;
+        line-height: 1.55;
+        margin-bottom: 10px;
+    }
+
+    .testimonial-author {
+        font-size: 0.95rem;
+    }
+
+    .testimonial-service {
+        font-size: 0.85rem;
+    }
+
+    .stars {
+        font-size: 1em;
+        margin-bottom: 6px;
+    }
+
+    .testimonial-dots {
+        margin-top: 16px;
     }
 }
 

@@ -375,9 +375,12 @@ document.addEventListener('DOMContentLoaded', function() {
     const testimonialTrack = document.querySelector('.testimonials-track');
     const testimonialCards = document.querySelectorAll('.testimonial-card');
     const testimonialDotsContainer = document.querySelector('.testimonial-dots');
-    let testimonialTimer;
+    let testimonialTimer = null;
+    const testimonialAutoScrollMs = 15000;
     
-    if (testimonialCards.length > 0) {
+    if (testimonialTrack && testimonialDotsContainer && testimonialCards.length > 0) {
+        let touchStartX = null;
+
         // Create dots
         testimonialCards.forEach((_, index) => {
             const dot = document.createElement('button');
@@ -385,40 +388,91 @@ document.addEventListener('DOMContentLoaded', function() {
             dot.className = 'testimonial-dot';
             dot.setAttribute('aria-label', `Show testimonial ${index + 1}`);
             if (index === 0) dot.classList.add('active');
-            dot.addEventListener('click', () => goToTestimonial(index));
+            dot.addEventListener('click', () => {
+                goToTestimonial(index);
+                startTestimonialCarousel();
+            });
             testimonialDotsContainer.appendChild(dot);
         });
         
         function goToTestimonial(index) {
-            testimonialIndex = index;
-            const offset = -100 * index;
+            testimonialIndex = (index + testimonialCards.length) % testimonialCards.length;
+            const offset = -100 * testimonialIndex;
             testimonialTrack.style.transform = `translateX(${offset}%)`;
             
             // Update dots
-            document.querySelectorAll('.testimonial-dot').forEach((dot, i) => {
-                dot.classList.toggle('active', i === index);
+            testimonialDotsContainer.querySelectorAll('.testimonial-dot').forEach((dot, i) => {
+                dot.classList.toggle('active', i === testimonialIndex);
             });
         }
         
         function nextTestimonial() {
-            testimonialIndex = (testimonialIndex + 1) % testimonialCards.length;
-            goToTestimonial(testimonialIndex);
+            goToTestimonial(testimonialIndex + 1);
+        }
+
+        function previousTestimonial() {
+            goToTestimonial(testimonialIndex - 1);
         }
         
         // Auto-scroll every 15 seconds
         function startTestimonialCarousel() {
-            testimonialTimer = setInterval(nextTestimonial, 15000);
+            if (testimonialTimer !== null) {
+                clearInterval(testimonialTimer);
+            }
+            testimonialTimer = setInterval(nextTestimonial, testimonialAutoScrollMs);
+        }
+
+        function stopTestimonialCarousel() {
+            if (testimonialTimer !== null) {
+                clearInterval(testimonialTimer);
+                testimonialTimer = null;
+            }
         }
         
-        // Pause on hover, resume on mouse leave
-        testimonialTrack.addEventListener('mouseenter', () => {
-            clearInterval(testimonialTimer);
-        });
-        
-        testimonialTrack.addEventListener('mouseleave', () => {
+        // Pause on hover/focus, resume on leave/blur
+        testimonialTrack.addEventListener('mouseenter', stopTestimonialCarousel);
+        testimonialTrack.addEventListener('mouseleave', startTestimonialCarousel);
+        testimonialTrack.addEventListener('focusin', stopTestimonialCarousel);
+        testimonialTrack.addEventListener('focusout', startTestimonialCarousel);
+
+        // Touch/swipe support for mobile
+        testimonialTrack.addEventListener('touchstart', (event) => {
+            touchStartX = event.changedTouches[0].clientX;
+            stopTestimonialCarousel();
+        }, { passive: true });
+
+        testimonialTrack.addEventListener('touchend', (event) => {
+            if (touchStartX === null) {
+                startTestimonialCarousel();
+                return;
+            }
+
+            const touchEndX = event.changedTouches[0].clientX;
+            const deltaX = touchEndX - touchStartX;
+            const swipeThreshold = 40;
+
+            if (Math.abs(deltaX) >= swipeThreshold) {
+                if (deltaX < 0) {
+                    nextTestimonial();
+                } else {
+                    previousTestimonial();
+                }
+            }
+
+            touchStartX = null;
             startTestimonialCarousel();
+        }, { passive: true });
+
+        // Pause while tab is hidden to avoid jumpy behavior when returning
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden) {
+                stopTestimonialCarousel();
+            } else {
+                startTestimonialCarousel();
+            }
         });
         
+        goToTestimonial(0);
         startTestimonialCarousel();
     }
     
