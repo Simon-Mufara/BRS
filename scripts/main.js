@@ -380,8 +380,10 @@ document.addEventListener('DOMContentLoaded', function() {
     if (testimonialCards.length > 0) {
         // Create dots
         testimonialCards.forEach((_, index) => {
-            const dot = document.createElement('span');
+            const dot = document.createElement('button');
+            dot.type = 'button';
             dot.className = 'testimonial-dot';
+            dot.setAttribute('aria-label', `Show testimonial ${index + 1}`);
             if (index === 0) dot.classList.add('active');
             dot.addEventListener('click', () => goToTestimonial(index));
             testimonialDotsContainer.appendChild(dot);
@@ -685,15 +687,29 @@ function handleImageUpload(event) {
 
 function displayImagePreview() {
     const container = document.getElementById('imagePreviewContainer');
+    if (!container) {
+        return;
+    }
+
     container.innerHTML = '';
     
     uploadedImages.forEach((image, index) => {
         const div = document.createElement('div');
         div.className = 'image-preview-item';
-        div.innerHTML = 
-            <img src=" + image.data + " alt=" + image.name + ">
-            <button class="image-remove-btn" onclick="removeImage( + index + )">×</button>
-        ;
+
+        const previewImage = document.createElement('img');
+        previewImage.src = image.data;
+        previewImage.alt = image.name;
+
+        const removeButton = document.createElement('button');
+        removeButton.type = 'button';
+        removeButton.className = 'image-remove-btn';
+        removeButton.setAttribute('aria-label', `Remove ${image.name}`);
+        removeButton.textContent = '×';
+        removeButton.addEventListener('click', () => removeImage(index));
+
+        div.appendChild(previewImage);
+        div.appendChild(removeButton);
         container.appendChild(div);
     });
 }
@@ -708,65 +724,85 @@ function generateQuoteReview() {
     const location = document.getElementById('location').value;
     const details = document.getElementById('details').value;
     const reviewBox = document.getElementById('quoteReview');
-    
-    let reviewHTML = 
-        <div class="review-item">
-            <div class="review-label">Service Requested:</div>
-            <div class="review-value"> + service + </div>
-        </div>
-        <div class="review-item">
-            <div class="review-label">Location:</div>
-            <div class="review-value"> + location + </div>
-        </div>
-    ;
-    
-    // Add service-specific questions
-    if (serviceQuestions[service]) {
-        let questionsHTML = '';
+
+    if (!reviewBox) {
+        return;
+    }
+
+    reviewBox.innerHTML = '';
+
+    const appendReviewItem = (labelText, valueNode) => {
+        const item = document.createElement('div');
+        item.className = 'review-item';
+
+        const label = document.createElement('div');
+        label.className = 'review-label';
+        label.textContent = labelText;
+
+        const value = document.createElement('div');
+        value.className = 'review-value';
+
+        if (typeof valueNode === 'string') {
+            value.textContent = valueNode;
+        } else if (valueNode) {
+            value.appendChild(valueNode);
+        }
+
+        item.appendChild(label);
+        item.appendChild(value);
+        reviewBox.appendChild(item);
+    };
+
+    appendReviewItem('Service Requested:', service || 'Not specified');
+    appendReviewItem('Location:', location || 'Not specified');
+
+    if (service && serviceQuestions[service]) {
+        const detailsWrapper = document.createElement('div');
         serviceQuestions[service].forEach((q, index) => {
-            const answerElem = document.getElementById('q' + index);
-            if (answerElem) {
-                questionsHTML += 
-                    <div style="margin-bottom: 8px;">
-                        <strong style="color: #000;"> + q.question + </strong><br>
-                        <span style="color: #666;"> + answerElem.value + </span>
-                    </div>
-                ;
+            const answerElem = document.getElementById(`q${index}`);
+            if (!answerElem) {
+                return;
             }
+
+            const questionRow = document.createElement('div');
+            questionRow.style.marginBottom = '8px';
+
+            const questionLabel = document.createElement('strong');
+            questionLabel.style.color = '#000';
+            questionLabel.textContent = q.question;
+
+            const answerValue = document.createElement('span');
+            answerValue.style.color = '#666';
+            answerValue.textContent = answerElem.value;
+
+            questionRow.appendChild(questionLabel);
+            questionRow.appendChild(document.createElement('br'));
+            questionRow.appendChild(answerValue);
+            detailsWrapper.appendChild(questionRow);
         });
-        if (questionsHTML) {
-            reviewHTML += 
-                <div class="review-item">
-                    <div class="review-label">Service Details:</div>
-                    <div class="review-value"> + questionsHTML + </div>
-                </div>
-            ;
+
+        if (detailsWrapper.childElementCount > 0) {
+            appendReviewItem('Service Details:', detailsWrapper);
         }
     }
-    
+
     if (details) {
-        reviewHTML += 
-            <div class="review-item">
-                <div class="review-label">Additional Details:</div>
-                <div class="review-value"> + details + </div>
-            </div>
-        ;
+        appendReviewItem('Additional Details:', details);
     }
-    
+
     if (uploadedImages.length > 0) {
-        let imagesHTML = '<div class="review-images">';
+        const imagesWrapper = document.createElement('div');
+        imagesWrapper.className = 'review-images';
+
         uploadedImages.forEach(image => {
-            imagesHTML += '<img src="' + image.data + '" alt="Project photo">';
+            const previewImage = document.createElement('img');
+            previewImage.src = image.data;
+            previewImage.alt = 'Project photo';
+            previewImage.loading = 'lazy';
+            previewImage.decoding = 'async';
+            imagesWrapper.appendChild(previewImage);
         });
-        imagesHTML += '</div>';
-        
-        reviewHTML += 
-            <div class="review-item">
-                <div class="review-label">Uploaded Photos ( + uploadedImages.length + ):</div>
-                <div class="review-value"> + imagesHTML + </div>
-            </div>
-        ;
+
+        appendReviewItem(`Uploaded Photos (${uploadedImages.length}):`, imagesWrapper);
     }
-    
-    reviewBox.innerHTML = reviewHTML;
 }

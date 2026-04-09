@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="BuildRight Solutions provides construction, maintenance, painting, plumbing, paving, roofing, waterproofing, and renovation services across Gauteng.">
     <title>BuildRight Solutions - We Nail It, You Enjoy It!</title>
 
     <!-- Styles -->
@@ -10,6 +11,8 @@
     <link rel="icon" href="./favicon.ico" type="image/x-icon">
 
     <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
@@ -51,7 +54,7 @@
         <h2>Where do you need workers?</h2>
         <p>Select your area in Gauteng for a tailored quote.</p>
         <div class="area-selector">
-            <select id="areaSelect">
+            <select id="areaSelect" aria-label="Select your area">
                 <option value="">Select an area</option>
                 <option value="Randburg">Randburg</option>
                 <option value="Fourways">Fourways</option>
@@ -127,47 +130,47 @@
         </div>
         <div class="slideshow-container">
             <!-- Roofing -->
-            <div class="slide fade" data-service="roofing"><img src="./images/previous_work/roofing/roofing.jpeg" alt="Roofing Work 1"></div>
-            <div class="slide fade" data-service="roofing"><img src="./images/previous_work/roofing/internalroofing.jpeg" alt="Roofing Work 2"></div>
-            <div class="slide fade" data-service="roofing"><img src="./images/previous_work/roofing/patching_roofing.jpeg" alt="Roofing Work 3"></div>
-            <div class="slide fade" data-service="roofing"><img src="./images/services/roofing/roofing1.jpeg" alt="Roofing Work 4"></div>
-            <div class="slide fade" data-service="roofing"><img src="./images/services/roofing/roofing3.jpeg" alt="Roofing Work 5"></div>
-            <div class="slide fade" data-service="roofing"><img src="./images/services/roofing/roofing4.jpeg" alt="Roofing Work 6"></div>
+            <div class="slide fade" data-service="roofing"><img src="./images/previous_work/roofing/roofing.jpeg" alt="Roofing Work 1" loading="lazy" decoding="async"></div>
+            <div class="slide fade" data-service="roofing"><img src="./images/previous_work/roofing/internalroofing.jpeg" alt="Roofing Work 2" loading="lazy" decoding="async"></div>
+            <div class="slide fade" data-service="roofing"><img src="./images/previous_work/roofing/patching_roofing.jpeg" alt="Roofing Work 3" loading="lazy" decoding="async"></div>
+            <div class="slide fade" data-service="roofing"><img src="./images/services/roofing/roofing1.jpeg" alt="Roofing Work 4" loading="lazy" decoding="async"></div>
+            <div class="slide fade" data-service="roofing"><img src="./images/services/roofing/roofing3.jpeg" alt="Roofing Work 5" loading="lazy" decoding="async"></div>
+            <div class="slide fade" data-service="roofing"><img src="./images/services/roofing/roofing4.jpeg" alt="Roofing Work 6" loading="lazy" decoding="async"></div>
 
             <!-- Plumbing -->
-            <div class="slide fade" data-service="plumbing"><img src="./images/previous_work/plumbing/plumbing.jpeg" alt="Plumbing Work 1"></div>
-            <div class="slide fade" data-service="plumbing"><img src="./images/previous_work/plumbing/plumbing2.jpeg" alt="Plumbing Work 2"></div>
-            <div class="slide fade" data-service="plumbing"><img src="./images/previous_work/plumbing/plumbing3.jpeg" alt="Plumbing Work 3"></div>
-            <div class="slide fade" data-service="plumbing"><img src="./images/previous_work/plumbing/plumbing4.jpeg" alt="Plumbing Work 4"></div>
-            <div class="slide fade" data-service="plumbing"><img src="./images/previous_work/plumbing/plumning4.jpeg" alt="Plumbing Work 5"></div>
-            <div class="slide fade" data-service="plumbing"><img src="./images/previous_work/plumbing/geyser.jpeg" alt="Geyser 1"></div>
-            <div class="slide fade" data-service="plumbing"><img src="./images/previous_work/plumbing/geyser2.jpeg" alt="Geyser 2"></div>
-            <div class="slide fade" data-service="plumbing"><img src="./images/previous_work/plumbing/geysers3.jpeg" alt="Geyser 3"></div>
+            <div class="slide fade" data-service="plumbing"><img src="./images/previous_work/plumbing/plumbing.jpeg" alt="Plumbing Work 1" loading="lazy" decoding="async"></div>
+            <div class="slide fade" data-service="plumbing"><img src="./images/previous_work/plumbing/plumbing2.jpeg" alt="Plumbing Work 2" loading="lazy" decoding="async"></div>
+            <div class="slide fade" data-service="plumbing"><img src="./images/previous_work/plumbing/plumbing3.jpeg" alt="Plumbing Work 3" loading="lazy" decoding="async"></div>
+            <div class="slide fade" data-service="plumbing"><img src="./images/previous_work/plumbing/plumbing4.jpeg" alt="Plumbing Work 4" loading="lazy" decoding="async"></div>
+            <div class="slide fade" data-service="plumbing"><img src="./images/previous_work/plumbing/plumning4.jpeg" alt="Plumbing Work 5" loading="lazy" decoding="async"></div>
+            <div class="slide fade" data-service="plumbing"><img src="./images/previous_work/plumbing/geyser.jpeg" alt="Geyser 1" loading="lazy" decoding="async"></div>
+            <div class="slide fade" data-service="plumbing"><img src="./images/previous_work/plumbing/geyser2.jpeg" alt="Geyser 2" loading="lazy" decoding="async"></div>
+            <div class="slide fade" data-service="plumbing"><img src="./images/previous_work/plumbing/geysers3.jpeg" alt="Geyser 3" loading="lazy" decoding="async"></div>
 
             <!-- Painting -->
-            <div class="slide fade" data-service="painting"><img src="./images/previous_work/painting/painting2.jpeg" alt="Painting Work 1"></div>
-            <div class="slide fade" data-service="painting"><img src="./images/previous_work/painting/painting5.jpeg" alt="Painting Work 2"></div>
-            <div class="slide fade" data-service="painting"><img src="./images/previous_work/painting/paiting.jpeg" alt="Painting Work 3"></div>
-            <div class="slide fade" data-service="painting"><img src="./images/previous_work/painting/paiting6.jpeg" alt="Painting Work 4"></div>
-            <div class="slide fade" data-service="painting"><img src="./images/services/painting/painting.jpeg" alt="Painting Work 5"></div>
-            <div class="slide fade" data-service="painting"><img src="./images/services/painting/painting4.jpeg" alt="Painting Work 6"></div>
+            <div class="slide fade" data-service="painting"><img src="./images/previous_work/painting/painting2.jpeg" alt="Painting Work 1" loading="lazy" decoding="async"></div>
+            <div class="slide fade" data-service="painting"><img src="./images/previous_work/painting/painting5.jpeg" alt="Painting Work 2" loading="lazy" decoding="async"></div>
+            <div class="slide fade" data-service="painting"><img src="./images/previous_work/painting/paiting.jpeg" alt="Painting Work 3" loading="lazy" decoding="async"></div>
+            <div class="slide fade" data-service="painting"><img src="./images/previous_work/painting/paiting6.jpeg" alt="Painting Work 4" loading="lazy" decoding="async"></div>
+            <div class="slide fade" data-service="painting"><img src="./images/services/painting/painting.jpeg" alt="Painting Work 5" loading="lazy" decoding="async"></div>
+            <div class="slide fade" data-service="painting"><img src="./images/services/painting/painting4.jpeg" alt="Painting Work 6" loading="lazy" decoding="async"></div>
 
             <!-- Paving & Tiling -->
-            <div class="slide fade" data-service="paving"><img src="./images/previous_work/paving/paving2.jpeg" alt="Paving Work 1"></div>
-            <div class="slide fade" data-service="paving"><img src="./images/previous_work/paving/pavement4.jpeg" alt="Paving Work 2"></div>
-            <div class="slide fade" data-service="paving"><img src="./images/previous_work/paving/pavement5.jpeg" alt="Paving Work 3"></div>
-            <div class="slide fade" data-service="paving"><img src="./images/services/paving/pavement3.jpeg" alt="Paving Work 4"></div>
-            <div class="slide fade" data-service="paving"><img src="./images/services/paving/pavement4.jpeg" alt="Paving Work 5"></div>
-            <div class="slide fade" data-service="paving"><img src="./images/services/paving/pavement5.jpeg" alt="Paving Work 6"></div>
-            <div class="slide fade" data-service="paving"><img src="./images/services/paving/paving2.jpeg" alt="Paving Work 7"></div>
-            <div class="slide fade" data-service="paving"><img src="./images/services/tiling/tiling.jpeg" alt="Tiling Work 1"></div>
+            <div class="slide fade" data-service="paving"><img src="./images/previous_work/paving/paving2.jpeg" alt="Paving Work 1" loading="lazy" decoding="async"></div>
+            <div class="slide fade" data-service="paving"><img src="./images/previous_work/paving/pavement4.jpeg" alt="Paving Work 2" loading="lazy" decoding="async"></div>
+            <div class="slide fade" data-service="paving"><img src="./images/previous_work/paving/pavement5.jpeg" alt="Paving Work 3" loading="lazy" decoding="async"></div>
+            <div class="slide fade" data-service="paving"><img src="./images/services/paving/pavement3.jpeg" alt="Paving Work 4" loading="lazy" decoding="async"></div>
+            <div class="slide fade" data-service="paving"><img src="./images/services/paving/pavement4.jpeg" alt="Paving Work 5" loading="lazy" decoding="async"></div>
+            <div class="slide fade" data-service="paving"><img src="./images/services/paving/pavement5.jpeg" alt="Paving Work 6" loading="lazy" decoding="async"></div>
+            <div class="slide fade" data-service="paving"><img src="./images/services/paving/paving2.jpeg" alt="Paving Work 7" loading="lazy" decoding="async"></div>
+            <div class="slide fade" data-service="paving"><img src="./images/services/tiling/tiling.jpeg" alt="Tiling Work 1" loading="lazy" decoding="async"></div>
 
             <!-- Building -->
-            <div class="slide fade" data-service="building"><img src="./images/previous_work/building/internal_fixing.jpeg" alt="Building Work 1"></div>
-            <div class="slide fade" data-service="building"><img src="./images/previous_work/building/internal_fixing2.jpeg" alt="Building Work 2"></div>
+            <div class="slide fade" data-service="building"><img src="./images/previous_work/building/internal_fixing.jpeg" alt="Building Work 1" loading="lazy" decoding="async"></div>
+            <div class="slide fade" data-service="building"><img src="./images/previous_work/building/internal_fixing2.jpeg" alt="Building Work 2" loading="lazy" decoding="async"></div>
 
             <!-- Solar (Placeholder for future images) -->
-            <div class="slide fade" data-service="solar"><img src="./images/services/solar/solar.jpeg" alt="Solar Installation 1"></div>
+            <div class="slide fade" data-service="solar"><img src="./images/services/solar/solar.jpeg" alt="Solar Installation 1" loading="lazy" decoding="async"></div>
         </div>
     </div>
 </section>
@@ -180,17 +183,17 @@
         <div class="team-grid">
             <div class="team-member">
                 <a href="./images/team/Team.jpeg" target="_blank" rel="noopener noreferrer">
-                    <img src="./images/team/Team.jpeg" alt="Team Overview">
+                    <img src="./images/team/Team.jpeg" alt="Team Overview" loading="lazy" decoding="async">
                 </a>
             </div>
             <div class="team-member">
                 <a href="./images/team/team3.jpeg" target="_blank" rel="noopener noreferrer">
-                    <img src="./images/team/team3.jpeg" alt="Team Member 1">
+                    <img src="./images/team/team3.jpeg" alt="Team Member 1" loading="lazy" decoding="async">
                 </a>
             </div>
             <div class="team-member">
                 <a href="./images/team/team4.jpeg" target="_blank" rel="noopener noreferrer">
-                    <img src="./images/team/team4.jpeg" alt="Team Member 2">
+                    <img src="./images/team/team4.jpeg" alt="Team Member 2" loading="lazy" decoding="async">
                 </a>
             </div>
         </div>
@@ -236,12 +239,12 @@
     </div>
 </section>
 
-<section id="testimonials">
+<section id="testimonials" aria-labelledby="testimonials-heading">
     <div class="container">
-        <h2>What Our Clients Say</h2>
+        <h2 id="testimonials-heading">What Our Clients Say</h2>
         <p class="section-intro">Don't just take our word for it - hear from our satisfied customers!</p>
-        <div class="testimonials-carousel">
-            <div class="testimonials-track">
+        <div class="testimonials-carousel" aria-label="Client testimonials carousel">
+            <div class="testimonials-track" aria-live="polite">
                 <div class="testimonial-card">
                     <div class="stars">⭐⭐⭐⭐⭐</div>
                     <p class="testimonial-text">"BuildRight Solutions did an amazing job on our home renovation. Professional, punctual, and the quality of work exceeded our expectations. Highly recommended!"</p>
@@ -402,10 +405,9 @@
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3582.8366937474996!2d27.929031315031824!3d-26.08516698349929!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1e9573b1c8e1c8e1%3A0x8e1c8e1c8e1c8e1c!2sZandspruit%2C%20Honeydew%2C%20Roodepoort%2C%202170!5e0!3m2!1sen!2sza!4v1649152347821!5m2!1sen!2sza" 
                 width="100%" 
                 height="400" 
-                style="border:0; border-radius: 15px;" 
+                title="BuildRight Solutions location map"
                 allowfullscreen="" 
-                loading="lazy" 
-                referrerpolicy="no-referrer-when-downgrade">
+                loading="lazy">
             </iframe>
         </div>
     </div>
@@ -416,30 +418,30 @@
         <h2>Our Partners</h2>
         <p>We collaborate with top industry leaders to deliver the best results for our clients.</p>
         <div class="partners-grid">
-            <img src="./images/partners/pos-exchange-solutions.png" alt="Pos Exchange Solutions Logo" class="partner-logo">
+            <img src="./images/partners/pos-exchange-solutions.png" alt="Pos Exchange Solutions Logo" class="partner-logo" loading="lazy" decoding="async">
         </div>
     </div>
 </section>
 
 <footer>
     <div class="container">
-        <img src="./images/logo.png" alt="BuildRight Solutions Logo" class="footer-logo">
+        <img src="./images/logo.png" alt="BuildRight Solutions Logo" class="footer-logo" loading="lazy" decoding="async">
         <p class="footer-company">BuildRight Solutions</p>
         <p class="footer-reg">Company Registration No: 2026/110944/07</p>
         <p>&copy; 2026 BuildRight Solutions. All rights reserved.</p>
         <p class="footer-links"><a href="./terms-conditions.html">Terms & Conditions</a> | <a href="./privacy-policy.html">Privacy Policy</a></p>
         <div class="social-links">
-            <a href="https://x.com/Buildright_SA" target="_blank"><i class="fab fa-x-twitter"></i></a>
-            <a href="https://www.facebook.com/people/Buildright-Solutions/61586778577221/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://x.com/Buildright_SA" target="_blank" rel="noopener noreferrer" aria-label="BuildRight Solutions on X"><i class="fab fa-x-twitter"></i></a>
+            <a href="https://www.facebook.com/people/Buildright-Solutions/61586778577221/" target="_blank" rel="noopener noreferrer" aria-label="BuildRight Solutions on Facebook"><i class="fab fa-facebook-f"></i></a>
         </div>
     </div>
 </footer>
 
 <div id="floating-buttons">
-    <a href="https://wa.me/27620552382" target="_blank" class="float-btn whatsapp">
+    <a href="https://wa.me/27620552382" target="_blank" rel="noopener noreferrer" class="float-btn whatsapp" aria-label="Message BuildRight Solutions on WhatsApp">
         <i class="fab fa-whatsapp"></i> WhatsApp
     </a>
-    <a href="mailto:buildright.solutions.agency@gmail.com" class="float-btn email">
+    <a href="mailto:buildright.solutions.agency@gmail.com" class="float-btn email" aria-label="Email BuildRight Solutions">
         <i class="fas fa-envelope"></i> Email
     </a>
 </div>
@@ -482,7 +484,7 @@
                     <option value="Solar">Solar Installation</option>
                 </select>
                 
-                <div id="questions" style="display:none;margin-top:20px;"></div>
+                <div id="questions" class="is-hidden quote-questions"></div>
                 
                 <label for="location">Where is the service required?</label>
                 <input type="text" id="location" placeholder="Enter full address or area" required>
@@ -494,12 +496,12 @@
             </div>
             
             <!-- Step 2: Photo Upload -->
-            <div class="quote-step-content" id="step2" style="display:none;">
+            <div class="quote-step-content is-hidden" id="step2">
                 <h3>Upload Photos of the Project Area</h3>
                 <p class="step-description">Adding photos helps us provide a more accurate quote</p>
                 
                 <div class="image-upload-area">
-                    <input type="file" id="imageUpload" accept="image/*" multiple onchange="handleImageUpload(event)" style="display:none;">
+                    <input type="file" id="imageUpload" accept="image/*" multiple onchange="handleImageUpload(event)" class="visually-hidden" aria-label="Upload project photos">
                     <button type="button" class="btn-upload" onclick="document.getElementById('imageUpload').click()">
                         <i class="fas fa-camera"></i> Choose Photos
                     </button>
@@ -515,7 +517,7 @@
             </div>
             
             <!-- Step 3: Review & Send -->
-            <div class="quote-step-content" id="step3" style="display:none;">
+            <div class="quote-step-content is-hidden" id="step3">
                 <h3>Review Your Quote Request</h3>
                 <p class="step-description">Please review all details before sending</p>
                 
@@ -532,6 +534,6 @@
     </div>
 </div>
 
-<script src="./scripts/main.js"></script>
+<script src="./scripts/main.js" defer></script>
 </body>
 </html>
