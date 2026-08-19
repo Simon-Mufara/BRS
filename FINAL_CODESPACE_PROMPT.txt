@@ -1,3 +1,26 @@
+# 🚀 GITHUB CODESPACE QUICK START PROMPT
+# Copy and paste the entire block below into your GitHub Codespace terminal
+
+# =============================================
+# BUILD RIGHT SOLUTIONS - QUOTATION AGENT SETUP
+# =============================================
+
+echo "🚀 Setting up BuildRight Solutions Quotation Agent in Codespace..."
+
+# 1. Create the setup script
+cat > setup_quotation_agent.sh << 'EOF'
+#!/bin/bash
+# BuildRight Solutions Quotation Agent Setup Script
+# Run this in GitHub Codespace to set up the quotation agent website
+
+echo "🚀 Setting up BuildRight Solutions Quotation Agent..."
+
+# Create directory if it doesn't exist
+mkdir -p quotation-agent
+cd quotation-agent
+
+# Create index.html
+cat > index.html << 'HTML_EOF'
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,8 +30,6 @@
     <link rel="stylesheet" href="styles.css">
     <!-- EmailJS SDK - replace with your actual setup -->
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-    <!-- jsPDF for client-side PDF generation on GitHub Pages -->
-    <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
 </head>
 <body>
     <!-- Header -->
@@ -198,78 +219,4 @@
                                 <option value="Edenvale">Edenvale</option>
                                 <option value="Alberton">Alberton</option>
                                 <option value="Germiston">Germiston</option>
-                                <option value="Roodepoort">Roodepoort</option>
-                                <option value="Pretoria">Pretoria</option>
-                                <option value="Centurion">Centurion</option>
-                                <option value="Soweto">Soweto</option>
-                                <option value="Fourways">Fourways</option>
-                                <option value="Other Gauteng">Other Gauteng Area</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="form-group full-width">
-                        <label for="enq-details">Job Details *</label>
-                        <textarea id="enq-details" rows="4" placeholder="Describe the work needed, approximate size, any specific requirements..." required></textarea>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="enq-photos">Photos (Optional)</label>
-                        <input type="file" id="enq-photos" accept="image/*" multiple>
-                        <small>Max 5 photos, JPG/PNG under 5MB each</small>
-                    </div>
-
-                    <button type="submit" class="btn btn-primary">Send Quote Request</button>
-                </form>
-
-                <div id="enquiry-status" class="status-message hidden"></div>
-            </section>
-
-            <!-- Templates Tab -->
-            <section id="templates" class="tab-pane">
-                <h2>Quotation Templates & Examples</h2>
-                <p>Start from real examples or use these as templates for your projects</p>
-
-                <div class="templates-grid">
-                    <!-- Template cards will be populated by JavaScript -->
-                </div>
-
-                <button type="button" id="load-more-templates" class="btn btn-outline mt-3">Load More Examples</button>
-            </section>
-        </div>
-    </main>
-
-    <!-- Footer -->
-    <footer class="site-footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-info">
-                    <p><strong>BuildRight Solutions</strong></p>
-                    <p>Zandspruit, Honeydew, Roodepoort, Johannesburg, Gauteng, 2170</p>
-                    <p>Mon–Thu 6am–6pm, Fri 8am–4pm, Sat 8am–2pm</p>
-                </div>
-                <div class="footer-links">
-                    <h4>Quick Links</h4>
-                    <ul>
-                        <li><a href="#quotation">Quotation Agent</a></li>
-                        <li><a href="#enquiry">New Enquiry</a></li>
-                        <li><a href="#templates">Templates</a></li>
-                    </ul>
-                </div>
-                <div class="footer-contact">
-                    <h4>Contact Us</h4>
-                    <p>📱 WhatsApp: 062 055 2382</p>
-                    <p>📞 Call: 066 402 8544</p>
-                    <p>✉️ Email: buildright.solutions.agency@gmail.com</p>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2026 BuildRight Solutions. All rights reserved.</p>
-                <p>Registration No: 2026/110944/07</p>
-            </div>
-        </div>
-    </footer>
-
-    <script src="script.js"></script>
-</body>
-</html>
+                                <option value="Roodepoort">Roodepoort</option

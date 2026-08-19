@@ -1,0 +1,4 @@
+# BuildRight Solutions Document Automation Agent - Dependencies
+fpdf2>=2.7.0
+PyPDF2>=3.0.0
+python-docx>=1.1.0

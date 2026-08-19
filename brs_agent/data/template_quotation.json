@@ -1,0 +1,28 @@
+{
+  "type": "quotation",
+  "style": "B",
+  "project_letter": "D",
+  "client_name": "[Client Name]",
+  "client_address": "[Property Address]",
+  "projected_start": "TBC (subject to site survey)",
+  "project_description": "Strip-out of existing tiling, waterproofing and re-tiling at the client's residential property. The works are supplied and executed as a complete turnkey item — all materials listed below are supplied by BuildRight Solutions and are included in the quoted totals.",
+  "measurements": [
+    {"element": "Tiling — run A", "dimension": "[dimension]", "area": "as measured"},
+    {"element": "Tiling — run B", "dimension": "[dimension]", "area": "as measured"}
+  ],
+  "materials": [
+    {"desc": "Cemex waterproofing compound", "qty": "10 L", "cost": 695.00, "notes": "Waterproofing application to substrate"},
+    {"desc": "Tile adhesive — wall & floor", "qty": "[qty] × 20 kg bags", "cost": 0.00, "notes": "Fixing tiles to prepared surface"},
+    {"desc": "Bonding liquid / tile mix additive", "qty": "5 L", "cost": 280.00, "notes": "Strengthens tile adhesive mix"},
+    {"desc": "Waterproofing membrane cloth", "qty": "1 roll", "cost": 220.00, "notes": "Waterproofing membrane layer"}
+  ],
+  "labour": [
+    {"desc": "Removal and disposal of existing tiling", "qty": "All areas", "cost": 950.00},
+    {"desc": "Waterproofing application", "qty": "All areas", "cost": 1100.00},
+    {"desc": "Tile installation", "qty": "All areas", "cost": 1450.00}
+  ],
+  "material_notes": [
+    "Waterproofing membrane cloth is priced at the standard roll estimate. Exact quantities confirmed on site survey.",
+    "Floor and wall tiles excluded — to be supplied by the client."
+  ]
+}
