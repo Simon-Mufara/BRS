@@ -3,537 +3,271 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="BuildRight Solutions provides construction, maintenance, painting, plumbing, paving, roofing, waterproofing, and renovation services across Gauteng.">
-    <title>BuildRight Solutions - We Nail It, You Enjoy It!</title>
-
-    <!-- Styles -->
-    <link rel="stylesheet" href="./style.css">
-    <link rel="icon" href="./favicon.ico" type="image/x-icon">
-
-    <!-- Fonts & Icons -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <title>BuildRight Solutions - Quotation Agent</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- EmailJS SDK - replace with your actual setup -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 </head>
-
 <body>
-
-<header>
-    <div class="container">
-        <div class="header-brand">
-            <img src="./images/logo.png" alt="BuildRight Solutions Logo" class="header-logo">
-            <div class="brand-text">
-                <h1>BuildRight Solutions</h1>
-                <p class="slogan">We Nail It, You Enjoy It!</p>
+    <!-- Header -->
+    <header class="site-header">
+        <div class="container">
+            <div class="logo">
+                <span class="logo-text">BUILD</span><span class="logo-text-alt">RIGHT</span>
+            </div>
+            <p class="tagline">"We Nail It, You Enjoy It!"</p>
+            <div class="contact-info">
+                <p><strong>Registration:</strong> 2026/110944/07</p>
+                <p><strong>WhatsApp:</strong> 062 055 2382</p>
+                <p><strong>Call:</strong> 066 402 8544</p>
             </div>
         </div>
-        <nav>
-            <ul>
-                <li><a href="#home">Home</a></li>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#previous-work">Previous Work</a></li>
-                <li><a href="#team">Team</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container">
+        <!-- Navigation Tabs -->
+        <nav class="tabs">
+            <button class="tab-btn active" data-tab="quotation">Quotation Agent</button>
+            <button class="tab-btn" data-tab="enquiry">New Enquiry</button>
+            <button class="tab-btn" data-tab="templates">Templates</button>
         </nav>
-    </div>
-</header>
 
-<section id="home" class="hero">
-    <div class="container">
-        <img src="./images/logo.png" alt="BuildRight Solutions Logo" class="hero-logo">
-        <h2>Welcome to <span class="highlight">BuildRight Solutions</span></h2>
-        <p>We're the nuts and bolts of the business! Specializing in high-quality construction and maintenance services in Johannesburg and surrounding areas.</p>
-        <button class="btn btn-quote" onclick="openQuoteModal()">Get a Quote</button>
-    </div>
-</section>
+        <!-- Tab Content -->
+        <div class="tab-content">
+            <!-- Quotation Agent Tab -->
+            <section id="quotation" class="tab-pane active">
+                <h2>Instant Quotation Generator</h2>
+                <p>Get a professional quotation in minutes with real-time pricing</p>
 
-<section id="service-areas" class="banner">
-    <div class="container">
-        <h2>Where do you need workers?</h2>
-        <p>Select your area in Gauteng for a tailored quote.</p>
-        <div class="area-selector">
-            <select id="areaSelect" aria-label="Select your area">
-                <option value="">Select an area</option>
-                <option value="Randburg">Randburg</option>
-                <option value="Fourways">Fourways</option>
-                <option value="Soweto">Soweto</option>
-                <option value="Rosebank">Rosebank</option>
-                <option value="Sandton">Sandton</option>
-                <option value="Midrand">Midrand</option>
-                <option value="Bryanston">Bryanston</option>
-                <option value="Rivonia">Rivonia</option>
-                <option value="Morningside">Morningside</option>
-                <option value="Bedfordview">Bedfordview</option>
-                <option value="Edenvale">Edenvale</option>
-                <option value="Alberton">Alberton</option>
-                <option value="Germiston">Germiston</option>
-                <option value="Roodepoort">Roodepoort</option>
-                <option value="Pretoria">Pretoria</option>
-                <option value="Centurion">Centurion</option>
-                <option value="Johannesburg CBD">Johannesburg CBD</option>
-                <option value="Boksburg">Boksburg</option>
-                <option value="Benoni">Benoni</option>
-            </select>
-            <button class="btn" onclick="openQuoteFromArea()">Get Quote for Selected Area</button>
-        </div>
-    </div>
-</section>
+                <form id="quotation-form" class="quote-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="service-type">Service Type *</label>
+                            <select id="service-type" required>
+                                <option value="">Select service type...</option>
+                                <option value="tiling">Tiling</option>
+                                <option value="painting">Painting</option>
+                                <option value="plumbing">Plumbing</option>
+                                <option value="electrical">Electrical Work</option>
+                                <option value="carpentry">Carpentry</option>
+                                <option value="waterproofing">Waterproofing</option>
+                                <option value="paving">Paving</option>
+                                <option value="building">Building/Construction</option>
+                                <option value="renovation">General Renovations</option>
+                            </select>
+                        </div>
 
-<section id="services">
-    <div class="container">
-        <h2>Our Services</h2>
-        <div class="services-grid">
-            <div class="service-group">
-                <h3>Core Services</h3>
-                <ul>
-                    <li>Painting</li>
-                    <li>Tiling</li>
-                    <li>Plumbing</li>
-                    <li>Paving</li>
-                    <li>Building</li>
-                    <li>Partition</li>
-                    <li>Roofing</li>
-                    <li>Waterproofing</li>
-                </ul>
-            </div>
-            <div class="service-group">
-                <h3>Additional Services</h3>
-                <ul>
-                    <li>Tiling & Paving</li>
-                    <li>Waterproofing</li>
-                    <li>Roofing & Windows</li>
-                    <li>Welding & Partitions</li>
-                    <li>Plumbing Services</li>
-                    <li>Building Installations</li>
-                    <li>Painting & Renovations</li>
-                    <li>Maintenance Work</li>
-                </ul>
-            </div>
-        </div>
-        <p class="services-tagline">We handle everything from small repairs to full renovations. Contact us for a quote!</p>
-    </div>
-</section>
+                        <div class="form-group">
+                            <label for="area">Area/Location *</label>
+                            <input type="text" id="area" placeholder="e.g., Sandton, Randburg, Rosebank" required>
+                        </div>
+                    </div>
 
-<section id="previous-work">
-    <div class="container">
-        <h2>Our Previous Work</h2>
-        <div class="service-tabs">
-            <button class="tab-btn active" data-filter="all">All Services</button>
-            <button class="tab-btn" data-filter="roofing">Roofing</button>
-            <button class="tab-btn" data-filter="plumbing">Plumbing</button>
-            <button class="tab-btn" data-filter="painting">Painting</button>
-            <button class="tab-btn" data-filter="paving">Paving & Tiling</button>
-            <button class="tab-btn" data-filter="building">Building</button>
-            <button class="tab-btn" data-filter="solar">Solar</button>
-        </div>
-        <div class="slideshow-container">
-            <!-- Roofing -->
-            <div class="slide fade" data-service="roofing"><img src="./images/previous_work/roofing/roofing.jpeg" alt="Roofing Work 1" loading="lazy" decoding="async"></div>
-            <div class="slide fade" data-service="roofing"><img src="./images/previous_work/roofing/internalroofing.jpeg" alt="Roofing Work 2" loading="lazy" decoding="async"></div>
-            <div class="slide fade" data-service="roofing"><img src="./images/previous_work/roofing/patching_roofing.jpeg" alt="Roofing Work 3" loading="lazy" decoding="async"></div>
-            <div class="slide fade" data-service="roofing"><img src="./images/services/roofing/roofing1.jpeg" alt="Roofing Work 4" loading="lazy" decoding="async"></div>
-            <div class="slide fade" data-service="roofing"><img src="./images/services/roofing/roofing3.jpeg" alt="Roofing Work 5" loading="lazy" decoding="async"></div>
-            <div class="slide fade" data-service="roofing"><img src="./images/services/roofing/roofing4.jpeg" alt="Roofing Work 6" loading="lazy" decoding="async"></div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="dimensions">Dimensions/Area Size *</label>
+                            <input type="text" id="dimensions" placeholder="e.g., 25m2 bathroom, 3 bedrooms, 50 linear meters" required>
+                        </div>
 
-            <!-- Plumbing -->
-            <div class="slide fade" data-service="plumbing"><img src="./images/previous_work/plumbing/plumbing.jpeg" alt="Plumbing Work 1" loading="lazy" decoding="async"></div>
-            <div class="slide fade" data-service="plumbing"><img src="./images/previous_work/plumbing/plumbing2.jpeg" alt="Plumbing Work 2" loading="lazy" decoding="async"></div>
-            <div class="slide fade" data-service="plumbing"><img src="./images/previous_work/plumbing/plumbing3.jpeg" alt="Plumbing Work 3" loading="lazy" decoding="async"></div>
-            <div class="slide fade" data-service="plumbing"><img src="./images/previous_work/plumbing/plumbing4.jpeg" alt="Plumbing Work 4" loading="lazy" decoding="async"></div>
-            <div class="slide fade" data-service="plumbing"><img src="./images/previous_work/plumbing/plumning4.jpeg" alt="Plumbing Work 5" loading="lazy" decoding="async"></div>
-            <div class="slide fade" data-service="plumbing"><img src="./images/previous_work/plumbing/geyser.jpeg" alt="Geyser 1" loading="lazy" decoding="async"></div>
-            <div class="slide fade" data-service="plumbing"><img src="./images/previous_work/plumbing/geyser2.jpeg" alt="Geyser 2" loading="lazy" decoding="async"></div>
-            <div class="slide fade" data-service="plumbing"><img src="./images/previous_work/plumbing/geysers3.jpeg" alt="Geyser 3" loading="lazy" decoding="async"></div>
+                        <div class="form-group">
+                            <label for="quality">Quality Level</label>
+                            <select id="quality">
+                                <option value="standard">Standard</option>
+                                <option value="budget">Budget</option>
+                                <option value="premium">Premium</option>
+                            </select>
+                        </div>
+                    </div>
 
-            <!-- Painting -->
-            <div class="slide fade" data-service="painting"><img src="./images/previous_work/painting/painting2.jpeg" alt="Painting Work 1" loading="lazy" decoding="async"></div>
-            <div class="slide fade" data-service="painting"><img src="./images/previous_work/painting/painting5.jpeg" alt="Painting Work 2" loading="lazy" decoding="async"></div>
-            <div class="slide fade" data-service="painting"><img src="./images/previous_work/painting/paiting.jpeg" alt="Painting Work 3" loading="lazy" decoding="async"></div>
-            <div class="slide fade" data-service="painting"><img src="./images/previous_work/painting/paiting6.jpeg" alt="Painting Work 4" loading="lazy" decoding="async"></div>
-            <div class="slide fade" data-service="painting"><img src="./images/services/painting/painting.jpeg" alt="Painting Work 5" loading="lazy" decoding="async"></div>
-            <div class="slide fade" data-service="painting"><img src="./images/services/painting/painting4.jpeg" alt="Painting Work 6" loading="lazy" decoding="async"></div>
+                    <div class="form-group full-width">
+                        <label for="details">Additional Details</label>
+                        <textarea id="details" rows="3" placeholder="Any specific requirements, materials preferences, or special notes..."></textarea>
+                    </div>
 
-            <!-- Paving & Tiling -->
-            <div class="slide fade" data-service="paving"><img src="./images/previous_work/paving/paving2.jpeg" alt="Paving Work 1" loading="lazy" decoding="async"></div>
-            <div class="slide fade" data-service="paving"><img src="./images/previous_work/paving/pavement4.jpeg" alt="Paving Work 2" loading="lazy" decoding="async"></div>
-            <div class="slide fade" data-service="paving"><img src="./images/previous_work/paving/pavement5.jpeg" alt="Paving Work 3" loading="lazy" decoding="async"></div>
-            <div class="slide fade" data-service="paving"><img src="./images/services/paving/pavement3.jpeg" alt="Paving Work 4" loading="lazy" decoding="async"></div>
-            <div class="slide fade" data-service="paving"><img src="./images/services/paving/pavement4.jpeg" alt="Paving Work 5" loading="lazy" decoding="async"></div>
-            <div class="slide fade" data-service="paving"><img src="./images/services/paving/pavement5.jpeg" alt="Paving Work 6" loading="lazy" decoding="async"></div>
-            <div class="slide fade" data-service="paving"><img src="./images/services/paving/paving2.jpeg" alt="Paving Work 7" loading="lazy" decoding="async"></div>
-            <div class="slide fade" data-service="paving"><img src="./images/services/tiling/tiling.jpeg" alt="Tiling Work 1" loading="lazy" decoding="async"></div>
+                    <div class="form-actions">
+                        <button type="button" id="generate-estimate" class="btn btn-primary">Generate Price Estimate</button>
+                        <button type="button" id="submit-enquiry" class="btn btn-secondary">Send as Enquiry</button>
+                    </div>
+                </form>
 
-            <!-- Building -->
-            <div class="slide fade" data-service="building"><img src="./images/previous_work/building/internal_fixing.jpeg" alt="Building Work 1" loading="lazy" decoding="async"></div>
-            <div class="slide fade" data-service="building"><img src="./images/previous_work/building/internal_fixing2.jpeg" alt="Building Work 2" loading="lazy" decoding="async"></div>
+                <!-- Estimate Results -->
+                <div id="estimate-results" class="estimate-results hidden">
+                    <h3>Price Estimate</h3>
+                    <div class="estimate-summary">
+                        <div class="estimate-item">
+                            <span>Reference:</span>
+                            <span id="estimate-ref">ENQ-{{date}}-{{random}}</span>
+                        </div>
+                        <div class="estimate-item">
+                            <span>Service:</span>
+                            <span id="estimate-service"></span>
+                        </div>
+                        <div class="estimate-item">
+                            <span>Area:</span>
+                            <span id="estimate-area"></span>
+                        </div>
+                        <div class="estimate-item">
+                            <span>Dimensions:</span>
+                            <span id="estimate-dimensions"></span>
+                        </div>
+                        <div class="estimate-item">
+                            <span>Quality:</span>
+                            <span id="estimate-quality"></span>
+                        </div>
+                    </div>
 
-            <!-- Solar (Placeholder for future images) -->
-            <div class="slide fade" data-service="solar"><img src="./images/services/solar/solar.jpeg" alt="Solar Installation 1" loading="lazy" decoding="async"></div>
-        </div>
-    </div>
-</section>
+                    <div class="estimate-breakdown">
+                        <h4>Breakdown</h4>
+                        <div id="estimate-details"></div>
 
-<section id="team">
-    <div class="container">
-        <h2>Our Team</h2>
-        <p>BuildRight Solutions is a premier, trusted provider of comprehensive construction and maintenance services in South Africa. Proudly based in Honeydew, Johannesburg, we're your go-to experts for top-tier construction and maintenance services across Gauteng and beyond.</p>
-        <p>Our experienced team brings over a decade of combined hands-on expertise, delivering excellence in every project — from minor repairs to major renovations — using sustainable materials and modern techniques for results that last.</p>
-        <div class="team-grid">
-            <div class="team-member">
-                <a href="./images/team/Team.jpeg" target="_blank" rel="noopener noreferrer">
-                    <img src="./images/team/Team.jpeg" alt="Team Overview" loading="lazy" decoding="async">
-                </a>
-            </div>
-            <div class="team-member">
-                <a href="./images/team/team3.jpeg" target="_blank" rel="noopener noreferrer">
-                    <img src="./images/team/team3.jpeg" alt="Team Member 1" loading="lazy" decoding="async">
-                </a>
-            </div>
-            <div class="team-member">
-                <a href="./images/team/team4.jpeg" target="_blank" rel="noopener noreferrer">
-                    <img src="./images/team/team4.jpeg" alt="Team Member 2" loading="lazy" decoding="async">
-                </a>
-            </div>
-        </div>
-    </div>
-</section>
+                        <div class="estimate-total">
+                            <span>Subtotal:</span>
+                            <span id="estimate-subtotal">R 0.00</span>
+                        </div>
+                        <div class="estimate-total">
+                            <span>VAT (15%):</span>
+                            <span id="estimate-vat">R 0.00</span>
+                        </div>
+                        <div class="estimate-total estimate-total-final">
+                            <span>Total:</span>
+                            <span id="estimate-total">R 0.00</span>
+                        </div>
+                    </div>
 
-<section id="why-choose-us">
-    <div class="container">
-        <h2>Why Choose BuildRight Solutions?</h2>
-        <p class="section-intro">We're not just another construction company - we're your trusted partner in building and maintaining your property.</p>
-        <div class="benefits-grid">
-            <div class="benefit-card">
-                <i class="fas fa-clock"></i>
-                <h3>Experienced Professionals</h3>
-                <p>Our team brings over a decade of combined hands-on expertise in construction and maintenance across Gauteng.</p>
-            </div>
-            <div class="benefit-card">
-                <i class="fas fa-certificate"></i>
-                <h3>Fully Licensed & Insured</h3>
-                <p>Company Registration No: 2026/110944/07 - We operate with complete transparency and professionalism.</p>
-            </div>
-            <div class="benefit-card">
-                <i class="fas fa-shield-alt"></i>
-                <h3>Quality Guaranteed</h3>
-                <p>We use sustainable materials and modern techniques for results that last.</p>
-            </div>
-            <div class="benefit-card">
-                <i class="fas fa-users"></i>
-                <h3>Trusted by Hundreds</h3>
-                <p>Serving residential and commercial clients across Johannesburg and surrounding areas.</p>
-            </div>
-            <div class="benefit-card">
-                <i class="fas fa-phone-alt"></i>
-                <h3>24/7 Support</h3>
-                <p>We're always here to help with emergency repairs and urgent maintenance needs.</p>
-            </div>
-            <div class="benefit-card">
-                <i class="fas fa-money-bill-wave"></i>
-                <h3>Competitive Pricing</h3>
-                <p>Fair, transparent quotes with no hidden fees. Quality work at affordable rates.</p>
-            </div>
-        </div>
-    </div>
-</section>
+                    <div class="estimate-notes">
+                        <p><em>* This is an estimate based on average market prices. Final quotation may vary based on site inspection and exact material selection.</em></p>
+                        <p><em>* Labour estimates included where applicable. Materials pricing includes typical waste factors (10% for tiles, 5% for other materials).</em></p>
+                    </div>
 
-<section id="testimonials" aria-labelledby="testimonials-heading">
-    <div class="container">
-        <h2 id="testimonials-heading">What Our Clients Say</h2>
-        <p class="section-intro">Don't just take our word for it - hear from our satisfied customers!</p>
-        <div class="testimonials-carousel" aria-label="Client testimonials carousel">
-            <div class="testimonials-track" aria-live="polite">
-                <div class="testimonial-card">
-                    <div class="stars">⭐⭐⭐⭐⭐</div>
-                    <p class="testimonial-text">"BuildRight Solutions did an amazing job on our home renovation. Professional, punctual, and the quality of work exceeded our expectations. Highly recommended!"</p>
-                    <p class="testimonial-author">- Sarah M., Sandton</p>
-                    <p class="testimonial-service">Home Renovation</p>
+                    <button type="button" id="create-quotation" class="btn btn-success mt-3">Create Professional Quotation PDF</button>
                 </div>
-                <div class="testimonial-card">
-                    <div class="stars">⭐⭐⭐⭐⭐</div>
-                    <p class="testimonial-text">"Had a major plumbing emergency and they responded immediately. Fixed the issue quickly and professionally. Great team!"</p>
-                    <p class="testimonial-author">- John K., Fourways</p>
-                    <p class="testimonial-service">Emergency Plumbing</p>
+            </section>
+
+            <!-- New Enquiry Tab -->
+            <section id="enquiry" class="tab-pane">
+                <h2>Submit Quote Request</h2>
+                <p>Let us know what you need and we'll get back to you quickly</p>
+
+                <form id="enquiry-form" class="enquiry-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="enq-name">Your Name *</label>
+                            <input type="text" id="enq-name" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="enq-contact">Contact Number / WhatsApp *</label>
+                            <input type="tel" id="enq-contact" placeholder="e.g., 082 123 4567" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="enq-service">Service Needed *</label>
+                            <select id="enq-service" required>
+                                <option value="">Select service...</option>
+                                <option value="Painting">Painting</option>
+                                <option value="Tiling">Tiling</option>
+                                <option value="Plumbing">Plumbing</option>
+                                <option value="Paving">Paving</option>
+                                <option value="Building">Building</option>
+                                <option value="Partition">Partition</option>
+                                <option value="Roofing">Roofing</option>
+                                <option value="Waterproofing">Waterproofing</option>
+                                <option value="Solar">Solar Installation</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="enq-area">Location/Area *</label>
+                            <select id="enq-area" required>
+                                <option value="">Select area...</option>
+                                <option value="Johannesburg">Johannesburg</option>
+                                <option value="Randburg">Randburg</option>
+                                <option value="Rosebank">Rosebank</option>
+                                <option value="Sandton">Sandton</option>
+                                <option value="Midrand">Midrand</option>
+                                <option value="Bryanston">Bryanston</option>
+                                <option value="Rivonia">Rivonia</option>
+                                <option value="Morningside">Morningside</option>
+                                <option value="Bedfordview">Bedfordview</option>
+                                <option value="Edenvale">Edenvale</option>
+                                <option value="Alberton">Alberton</option>
+                                <option value="Germiston">Germiston</option>
+                                <option value="Roodepoort">Roodepoort</option>
+                                <option value="Pretoria">Pretoria</option>
+                                <option value="Centurion">Centurion</option>
+                                <option value="Soweto">Soweto</option>
+                                <option value="Fourways">Fourways</option>
+                                <option value="Other Gauteng">Other Gauteng Area</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label for="enq-details">Job Details *</label>
+                        <textarea id="enq-details" rows="4" placeholder="Describe the work needed, approximate size, any specific requirements..." required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="enq-photos">Photos (Optional)</label>
+                        <input type="file" id="enq-photos" accept="image/*" multiple>
+                        <small>Max 5 photos, JPG/PNG under 5MB each</small>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Send Quote Request</button>
+                </form>
+
+                <div id="enquiry-status" class="status-message hidden"></div>
+            </section>
+
+            <!-- Templates Tab -->
+            <section id="templates" class="tab-pane">
+                <h2>Quotation Templates & Examples</h2>
+                <p>Start from real examples or use these as templates for your projects</p>
+
+                <div class="templates-grid">
+                    <!-- Template cards will be populated by JavaScript -->
                 </div>
-                <div class="testimonial-card">
-                    <div class="stars">⭐⭐⭐⭐⭐</div>
-                    <p class="testimonial-text">"Excellent roofing work! They completed the project on time and within budget. Very happy with the results."</p>
-                    <p class="testimonial-author">- Peter L., Roodepoort</p>
-                    <p class="testimonial-service">Roof Replacement</p>
+
+                <button type="button" id="load-more-templates" class="btn btn-outline mt-3">Load More Examples</button>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <p><strong>BuildRight Solutions</strong></p>
+                    <p>Zandspruit, Honeydew, Roodepoort, Johannesburg, Gauteng, 2170</p>
+                    <p>Mon–Thu 6am–6pm, Fri 8am–4pm, Sat 8am–2pm</p>
                 </div>
-                <div class="testimonial-card">
-                    <div class="stars">⭐⭐⭐⭐⭐</div>
-                    <p class="testimonial-text">"Professional painting service from start to finish. The team was respectful, clean, and the finish is perfect. Will definitely use again!"</p>
-                    <p class="testimonial-author">- Linda T., Randburg</p>
-                    <p class="testimonial-service">Interior Painting</p>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#quotation">Quotation Agent</a></li>
+                        <li><a href="#enquiry">New Enquiry</a></li>
+                        <li><a href="#templates">Templates</a></li>
+                    </ul>
                 </div>
-                <div class="testimonial-card">
-                    <div class="stars">⭐⭐⭐⭐⭐</div>
-                    <p class="testimonial-text">"BuildRight transformed our driveway with beautiful paving. The attention to detail was impressive. Highly professional team!"</p>
-                    <p class="testimonial-author">- Michael D., Centurion</p>
-                    <p class="testimonial-service">Driveway Paving</p>
-                </div>
-                <div class="testimonial-card">
-                    <div class="stars">⭐⭐⭐⭐⭐</div>
-                    <p class="testimonial-text">"Best construction company in Gauteng! They handled our building project with expertise and care. Couldn't be happier!"</p>
-                    <p class="testimonial-author">- Thabo M., Soweto</p>
-                    <p class="testimonial-service">Building Extension</p>
+                <div class="footer-contact">
+                    <h4>Contact Us</h4>
+                    <p>📱 WhatsApp: 062 055 2382</p>
+                    <p>📞 Call: 066 402 8544</p>
+                    <p>✉️ Email: buildright.solutions.agency@gmail.com</p>
                 </div>
             </div>
-        </div>
-        <div class="testimonial-dots"></div>
-    </div>
-</section>
-
-<section id="faq">
-    <div class="container">
-        <h2>Frequently Asked Questions</h2>
-        <p class="section-intro">Got questions? Click any question to learn more!</p>
-        <div class="faq-grid">
-            <a href="#faq-areas" class="faq-card" onclick="openFAQModal('areas'); return false;">
-                <i class="fas fa-map-marker-alt"></i>
-                <h3>What areas do you serve?</h3>
-                <p>Learn about our service coverage</p>
-                <span class="faq-arrow">→</span>
-            </a>
-            
-            <a href="#faq-quotes" class="faq-card" onclick="openFAQModal('quotes'); return false;">
-                <i class="fas fa-file-invoice-dollar"></i>
-                <h3>Do you offer free quotes?</h3>
-                <p>Our quotation process explained</p>
-                <span class="faq-arrow">→</span>
-            </a>
-            
-            <a href="#faq-timeline" class="faq-card" onclick="openFAQModal('timeline'); return false;">
-                <i class="fas fa-clock"></i>
-                <h3>How long does a project take?</h3>
-                <p>Project duration information</p>
-                <span class="faq-arrow">→</span>
-            </a>
-            
-            <a href="#faq-licensed" class="faq-card" onclick="openFAQModal('licensed'); return false;">
-                <i class="fas fa-certificate"></i>
-                <h3>Are you licensed and insured?</h3>
-                <p>Our credentials and compliance</p>
-                <span class="faq-arrow">→</span>
-            </a>
-            
-            <a href="#faq-emergency" class="faq-card" onclick="openFAQModal('emergency'); return false;">
-                <i class="fas fa-exclamation-triangle"></i>
-                <h3>Do you handle emergencies?</h3>
-                <p>Emergency service availability</p>
-                <span class="faq-arrow">→</span>
-            </a>
-            
-            <a href="#faq-payment" class="faq-card" onclick="openFAQModal('payment'); return false;">
-                <i class="fas fa-credit-card"></i>
-                <h3>What payment methods?</h3>
-                <p>Accepted payment options</p>
-                <span class="faq-arrow">→</span>
-            </a>
-            
-            <a href="#faq-warranty" class="faq-card" onclick="openFAQModal('warranty'); return false;">
-                <i class="fas fa-shield-alt"></i>
-                <h3>Do you provide warranties?</h3>
-                <p>Warranty and guarantee details</p>
-                <span class="faq-arrow">→</span>
-            </a>
-            
-            <a href="#faq-planning" class="faq-card" onclick="openFAQModal('planning'); return false;">
-                <i class="fas fa-drafting-compass"></i>
-                <h3>Help with project planning?</h3>
-                <p>Design and consultation services</p>
-                <span class="faq-arrow">→</span>
-            </a>
-        </div>
-    </div>
-</section>
-
-<!-- FAQ Modal -->
-<div id="faqModal" class="modal">
-    <div class="modal-content-faq">
-        <span class="close" onclick="closeFAQModal()">&times;</span>
-        <h2 id="faqModalTitle"></h2>
-        <div id="faqModalContent"></div>
-    </div>
-</div>
-
-<section id="contact">
-    <div class="container">
-        <h2>Contact Us</h2>
-        <div class="contact-info">
-            <div class="contact-item">
-                <i class="fas fa-map-marker-alt"></i>
-                <div>
-                    <strong>Address:</strong><br>
-                    Zandspruit, Honeydew<br>
-                    Roodepoort, Johannesburg<br>
-                    Gauteng, 2170
-                </div>
-            </div>
-            <div class="contact-item">
-                <i class="fas fa-clock"></i>
-                <div>
-                    <strong>Operating Hours:</strong><br>
-                    Mon - Thurs: 6am - 6pm<br>
-                    Friday: 8am - 4pm<br>
-                    Saturday: 8am - 2pm
-                </div>
-            </div>
-            <div class="contact-item">
-                <i class="fas fa-phone"></i>
-                <div>
-                    <strong>Phone:</strong><br>
-                    <a href="tel:+27620552382">062 055 2382</a> (WhatsApp)<br>
-                    <a href="tel:+27664028544">066 402 8544</a> (Call)
-                </div>
-            </div>
-            <div class="contact-item">
-                <i class="fas fa-envelope"></i>
-                <div>
-                    <strong>Email:</strong><br>
-                    <a href="mailto:buildright.solutions.agency@gmail.com">buildright.solutions.agency@gmail.com</a>
-                </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 BuildRight Solutions. All rights reserved.</p>
+                <p>Registration No: 2026/110944/07</p>
             </div>
         </div>
-        <p class="contact-tagline">Serving Johannesburg, Gauteng and surrounding areas. We're here to help!</p>
-        <div class="map-container">
-            <h3>Find Us</h3>
-            <iframe 
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3582.8366937474996!2d27.929031315031824!3d-26.08516698349929!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1e9573b1c8e1c8e1%3A0x8e1c8e1c8e1c8e1c!2sZandspruit%2C%20Honeydew%2C%20Roodepoort%2C%202170!5e0!3m2!1sen!2sza!4v1649152347821!5m2!1sen!2sza" 
-                width="100%" 
-                height="400" 
-                title="BuildRight Solutions location map"
-                allowfullscreen="" 
-                loading="lazy">
-            </iframe>
-        </div>
-    </div>
-</section>
+    </footer>
 
-<section id="partners">
-    <div class="container">
-        <h2>Our Partners</h2>
-        <p>We collaborate with top industry leaders to deliver the best results for our clients.</p>
-        <div class="partners-grid">
-            <img src="./images/partners/pos-exchange-solutions.png" alt="Pos Exchange Solutions Logo" class="partner-logo" loading="lazy" decoding="async">
-        </div>
-    </div>
-</section>
-
-<footer>
-    <div class="container">
-        <img src="./images/logo.png" alt="BuildRight Solutions Logo" class="footer-logo" loading="lazy" decoding="async">
-        <p class="footer-company">BuildRight Solutions</p>
-        <p class="footer-reg">Company Registration No: 2026/110944/07</p>
-        <p>&copy; 2026 BuildRight Solutions. All rights reserved.</p>
-        <p class="footer-links"><a href="./terms-conditions.html">Terms & Conditions</a> | <a href="./privacy-policy.html">Privacy Policy</a></p>
-        <div class="social-links">
-            <a href="https://x.com/Buildright_SA" target="_blank" rel="noopener noreferrer" aria-label="BuildRight Solutions on X"><i class="fab fa-x-twitter"></i></a>
-            <a href="https://www.facebook.com/people/Buildright-Solutions/61586778577221/" target="_blank" rel="noopener noreferrer" aria-label="BuildRight Solutions on Facebook"><i class="fab fa-facebook-f"></i></a>
-        </div>
-    </div>
-</footer>
-
-<div id="floating-buttons">
-    <a href="https://wa.me/27620552382" target="_blank" rel="noopener noreferrer" class="float-btn whatsapp" aria-label="Message BuildRight Solutions on WhatsApp">
-        <i class="fab fa-whatsapp"></i> WhatsApp
-    </a>
-    <a href="mailto:buildright.solutions.agency@gmail.com" class="float-btn email" aria-label="Email BuildRight Solutions">
-        <i class="fas fa-envelope"></i> Email
-    </a>
-</div>
-
-<div id="quoteModal" class="modal">
-    <div class="modal-content-quote">
-        <span class="close" onclick="closeQuoteModal()">&times;</span>
-        <h2>Get a Quote</h2>
-        
-        <!-- Step Indicator -->
-        <div class="quote-steps">
-            <div class="step active" data-step="1">
-                <span class="step-number">1</span>
-                <span class="step-label">Service Details</span>
-            </div>
-            <div class="step" data-step="2">
-                <span class="step-number">2</span>
-                <span class="step-label">Upload Photos</span>
-            </div>
-            <div class="step" data-step="3">
-                <span class="step-number">3</span>
-                <span class="step-label">Review & Send</span>
-            </div>
-        </div>
-        
-        <form id="quoteForm">
-            <!-- Step 1: Service Details -->
-            <div class="quote-step-content" id="step1">
-                <label for="service">Select Service:</label>
-                <select id="service" onchange="showQuestions()" required>
-                    <option value="">Choose a service</option>
-                    <option value="Painting">Painting</option>
-                    <option value="Tiling">Tiling</option>
-                    <option value="Plumbing">Plumbing</option>
-                    <option value="Paving">Paving</option>
-                    <option value="Building">Building</option>
-                    <option value="Partition">Partition</option>
-                    <option value="Roofing">Roofing</option>
-                    <option value="Waterproofing">Waterproofing</option>
-                    <option value="Solar">Solar Installation</option>
-                </select>
-                
-                <div id="questions" class="is-hidden quote-questions"></div>
-                
-                <label for="location">Where is the service required?</label>
-                <input type="text" id="location" placeholder="Enter full address or area" required>
-                
-                <label for="details">Additional Details:</label>
-                <textarea id="details" placeholder="Describe your project requirements..." rows="4"></textarea>
-                
-                <button type="button" class="btn" onclick="goToStep(2)">Next: Upload Photos →</button>
-            </div>
-            
-            <!-- Step 2: Photo Upload -->
-            <div class="quote-step-content is-hidden" id="step2">
-                <h3>Upload Photos of the Project Area</h3>
-                <p class="step-description">Adding photos helps us provide a more accurate quote</p>
-                
-                <div class="image-upload-area">
-                    <input type="file" id="imageUpload" accept="image/*" multiple onchange="handleImageUpload(event)" class="visually-hidden" aria-label="Upload project photos">
-                    <button type="button" class="btn-upload" onclick="document.getElementById('imageUpload').click()">
-                        <i class="fas fa-camera"></i> Choose Photos
-                    </button>
-                    <p class="upload-hint">You can select multiple photos (Max 5 images, 5MB each)</p>
-                </div>
-                
-                <div id="imagePreviewContainer" class="image-preview-grid"></div>
-                
-                <div class="step-navigation">
-                    <button type="button" class="btn btn-secondary" onclick="goToStep(1)">← Back</button>
-                    <button type="button" class="btn" onclick="goToStep(3)">Next: Review →</button>
-                </div>
-            </div>
-            
-            <!-- Step 3: Review & Send -->
-            <div class="quote-step-content is-hidden" id="step3">
-                <h3>Review Your Quote Request</h3>
-                <p class="step-description">Please review all details before sending</p>
-                
-                <div id="quoteReview" class="quote-review-box"></div>
-                
-                <div class="step-navigation">
-                    <button type="button" class="btn btn-secondary" onclick="goToStep(2)">← Back</button>
-                    <button type="button" class="btn btn-success" onclick="sendQuoteEmail()">
-                        <i class="fas fa-paper-plane"></i> Send Quote Request
-                    </button>
-                </div>
-            </div>
-        </form>
-    </div>
-</div>
-
-<script src="./scripts/main.js" defer></script>
+    <script src="script.js"></script>
 </body>
 </html>
