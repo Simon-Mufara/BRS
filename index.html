@@ -473,6 +473,7 @@
                 <label for="service">Select Service:</label>
                 <select id="service" onchange="showQuestions()" required>
                     <option value="">Choose a service</option>
+                    <option value="Quotation Agent">Quotation Agent (Multi-Scope)</option>
                     <option value="Painting">Painting</option>
                     <option value="Tiling">Tiling</option>
                     <option value="Plumbing">Plumbing</option>
@@ -485,9 +486,36 @@
                 </select>
                 
                 <div id="questions" class="is-hidden quote-questions"></div>
+
+                <label for="clientName">Client Name (Optional):</label>
+                <input type="text" id="clientName" placeholder="Enter client name for the quotation">
                 
                 <label for="location">Where is the service required?</label>
                 <input type="text" id="location" placeholder="Enter full address or area" required>
+
+                <label for="dimensions">Project Dimensions / Area:</label>
+                <input type="text" id="dimensions" placeholder="e.g. 2 bathrooms, 45 m² floor, 18 m² walls">
+
+                <label for="materialPreference">Material Preference:</label>
+                <input type="text" id="materialPreference" placeholder="e.g. Porcelain tiles, matte paint, standard fittings">
+
+                <label for="qualityPreference">Quality Preference:</label>
+                <select id="qualityPreference">
+                    <option value="">Select quality level</option>
+                    <option value="Budget">Budget</option>
+                    <option value="Standard">Standard</option>
+                    <option value="Premium">Premium</option>
+                </select>
+
+                <div id="colorSchemeContainer" class="is-hidden">
+                    <label for="colorScheme">Preferred Colour Scheme:</label>
+                    <select id="colorScheme">
+                        <option value="">Select a colour scheme</option>
+                    </select>
+                </div>
+
+                <label for="timeline">Timeline / Deadline:</label>
+                <input type="text" id="timeline" placeholder="e.g. Start next week, complete within 14 days">
                 
                 <label for="details">Additional Details:</label>
                 <textarea id="details" placeholder="Describe your project requirements..." rows="4"></textarea>

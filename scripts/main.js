@@ -16,7 +16,7 @@ function openQuoteModal() {
 function openQuoteFromArea() {
     const areaSelect = document.getElementById('areaSelect').value;
     openQuoteModal();
-    document.getElementById('area').value = areaSelect;
+    document.getElementById('location').value = areaSelect;
 }
 
 function openQuoteForService(serviceName) {
@@ -32,6 +32,14 @@ function closeQuoteModal() {
 
 // Service-specific questions
 const serviceQuestions = {
+    'Quotation Agent': [
+        { question: 'What work types are included?', options: ['Tiling', 'Painting', 'Plumbing', 'Electrical', 'Mixed scope'] },
+        { question: 'Do you want us to research current material prices?', options: ['Yes', 'No', 'Only for key items'] },
+        { question: 'Preferred quotation style?', options: ['Style A (Tabular)', 'Style B (Clean)', 'Recommend for me'] },
+        { question: 'Do you need budget and premium options compared?', options: ['Yes', 'No'] },
+        { question: 'Should VAT be included in totals?', options: ['Yes', 'No', 'Not sure'] },
+        { question: 'Client info available now?', options: ['Yes', 'No, use placeholder'] }
+    ],
     'Painting': [
         { question: 'What type of painting do you need?', options: ['Interior', 'Exterior', 'Both'] },
         { question: 'How many rooms/areas need painting?', options: ['1-2', '3-5', 'More than 5'] },
@@ -154,15 +162,30 @@ const serviceQuestions = {
     ]
 };
 
+const serviceColorSchemes = {
+    Painting: ['Warm Neutrals', 'Modern Minimal', 'Bold Accent', 'Monochrome', 'Need suggestions'],
+    Tiling: ['Earthy Stone Tones', 'Modern Greys', 'Classic White & Charcoal', 'Pattern Feature Mix', 'Need suggestions'],
+    Paving: ['Charcoal & Sandstone', 'Natural Stone Blend', 'Red Brick Traditional', 'Modern Slate', 'Need suggestions'],
+    Building: ['Contemporary Neutral', 'Industrial Contrast', 'Natural Wood & Stone', 'Classic Family Home', 'Need suggestions'],
+    Partition: ['Professional Office Neutral', 'Glass & Metal Modern', 'Warm Corporate', 'Minimal Monotone', 'Need suggestions'],
+    Roofing: ['Charcoal Roof Palette', 'Terracotta Warm', 'Light Reflective', 'Modern Matte', 'Need suggestions'],
+    Waterproofing: ['Match Existing Finish', 'Neutral Concealed Finish', 'Premium Protective Finish', 'Need suggestions'],
+    Plumbing: ['Match Existing Interior', 'Modern Chrome & White', 'Matte Black Accents', 'Need suggestions'],
+    Solar: ['Roof-Integrated Aesthetic', 'Low-Profile Dark Finish', 'High-Visibility Layout', 'Need suggestions'],
+    'Quotation Agent': ['Budget-Friendly Palette', 'Standard Modern Palette', 'Premium Designer Palette', 'Need suggestions']
+};
+
 // Show questions based on selected service
 function showQuestions() {
     const service = document.getElementById('service').value;
     const questionsDiv = document.getElementById('questions');
+    const colorSchemeContainer = document.getElementById('colorSchemeContainer');
+    const colorSchemeSelect = document.getElementById('colorScheme');
     questionsDiv.innerHTML = '';
-    questionsDiv.style.display = 'none';
+    questionsDiv.classList.add('is-hidden');
 
     if (service && serviceQuestions[service]) {
-        questionsDiv.style.display = 'block';
+        questionsDiv.classList.remove('is-hidden');
         serviceQuestions[service].forEach((q, index) => {
             const label = document.createElement('label');
             label.textContent = q.question;
@@ -186,13 +209,31 @@ function showQuestions() {
             }
         });
     }
+
+    colorSchemeSelect.innerHTML = '<option value="">Select a colour scheme</option>';
+    if (service && serviceColorSchemes[service]) {
+        colorSchemeContainer.classList.remove('is-hidden');
+        serviceColorSchemes[service].forEach(optionValue => {
+            const option = document.createElement('option');
+            option.value = optionValue;
+            option.textContent = optionValue;
+            colorSchemeSelect.appendChild(option);
+        });
+    } else {
+        colorSchemeContainer.classList.add('is-hidden');
+    }
 }
 
 /// Send quote email
 function sendQuoteEmail() {
     const service = document.getElementById('service').value;
+    const clientName = document.getElementById('clientName').value;
     const location = document.getElementById('location').value;
-    const area = document.getElementById('area').value;
+    const dimensions = document.getElementById('dimensions').value;
+    const materialPreference = document.getElementById('materialPreference').value;
+    const qualityPreference = document.getElementById('qualityPreference').value;
+    const colorScheme = document.getElementById('colorScheme').value;
+    const timeline = document.getElementById('timeline').value;
     const details = document.getElementById('details').value;
     const email = 'buildright.solutions.agency@gmail.com';
 
@@ -208,8 +249,13 @@ function sendQuoteEmail() {
 Quote Reference Number: ${refNumber}
 
 Service: ${service || 'Not specified'}
+Client Name: ${clientName || 'Not specified'}
 Location: ${location || 'Not specified'}
-Area: ${area || 'Not specified'}
+Dimensions / Area: ${dimensions || 'Not specified'}
+Material Preference: ${materialPreference || 'Not specified'}
+Quality Preference: ${qualityPreference || 'Not specified'}
+Preferred Colour Scheme: ${colorScheme || 'Not specified'}
+Timeline: ${timeline || 'Not specified'}
 Additional Details: ${details || 'None'}
 
 Answers to Questions:
@@ -223,6 +269,15 @@ Answers to Questions:
         });
     }
 
+    if (uploadedImages.length > 0) {
+        body += '\nUploaded Photos:\n';
+        uploadedImages.forEach((image, index) => {
+            const imageSizeMb = (image.size / (1024 * 1024)).toFixed(2);
+            body += `- Photo ${index + 1}: ${image.name} (${imageSizeMb} MB)\n`;
+        });
+        body += 'Note: Please reply to this email with the original photo attachments if needed.\n';
+    }
+
     body += `
 ******************************
 Thank you for your quote request!
@@ -233,7 +288,7 @@ Contact: 066 402 8544 | buildright.solutions.agency@gmail.com
 ******************************
 `;
 
-    const subject = `Quote Request [Ref: ${refNumber}] for ${service || 'Service'} in ${area || 'your area'}`;
+    const subject = `Quote Request [Ref: ${refNumber}] for ${service || 'Service'} in ${location || 'your area'}`;
     const mailtoLink = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     
     window.open(mailtoLink, '_blank');
@@ -721,7 +776,13 @@ function removeImage(index) {
 
 function generateQuoteReview() {
     const service = document.getElementById('service').value;
+    const clientName = document.getElementById('clientName').value;
     const location = document.getElementById('location').value;
+    const dimensions = document.getElementById('dimensions').value;
+    const materialPreference = document.getElementById('materialPreference').value;
+    const qualityPreference = document.getElementById('qualityPreference').value;
+    const colorScheme = document.getElementById('colorScheme').value;
+    const timeline = document.getElementById('timeline').value;
     const details = document.getElementById('details').value;
     const reviewBox = document.getElementById('quoteReview');
 
@@ -754,7 +815,25 @@ function generateQuoteReview() {
     };
 
     appendReviewItem('Service Requested:', service || 'Not specified');
+    if (clientName) {
+        appendReviewItem('Client Name:', clientName);
+    }
     appendReviewItem('Location:', location || 'Not specified');
+    if (dimensions) {
+        appendReviewItem('Dimensions / Area:', dimensions);
+    }
+    if (materialPreference) {
+        appendReviewItem('Material Preference:', materialPreference);
+    }
+    if (qualityPreference) {
+        appendReviewItem('Quality Preference:', qualityPreference);
+    }
+    if (colorScheme) {
+        appendReviewItem('Preferred Colour Scheme:', colorScheme);
+    }
+    if (timeline) {
+        appendReviewItem('Timeline:', timeline);
+    }
 
     if (service && serviceQuestions[service]) {
         const detailsWrapper = document.createElement('div');
